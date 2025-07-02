@@ -1,65 +1,170 @@
-import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ShoppingCart } from 'lucide-react';
-
-const menuData = {
-  Empanadas: [
-    { name: 'Jamón y Queso', price: 3.00, ingredients: 'Jamón, Queso' },
-    { name: 'Pollo y Queso', price: 3.20, ingredients: 'Pollo, Queso' },
-    { name: 'Carne y Queso', price: 3.50, ingredients: 'Carne, Queso' },
-    { name: 'Mixta', price: 4.00, ingredients: 'Variada' },
-    { name: 'Pabellón', price: 6.00, ingredients: 'Queso, Carne desmechada, Alubias negras, Plátano frito' },
-  ],
-  // Otras categorías aquí (Arepas, Cachapas, Hamburguesas, etc)
-};
-
-export default function BlueBirdMenu() {
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (item, qty, notes) => {
-    const existing = cart.find(c => c.name === item.name && c.notes === notes);
-    if (existing) {
-      setCart(cart.map(c => c.name === item.name && c.notes === notes ? { ...c, qty: c.qty + qty } : c));
-    } else {
-      setCart([...cart, { ...item, qty, notes }]);
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Bird Restobar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #000;
+      color: #fff;
     }
-  };
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+    header img {
+      max-width: 200px;
+    }
+    h2 {
+      border-bottom: 2px solid #ffcc00;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #333;
+    }
+    .product-details {
+      flex: 1;
+    }
+    .product-controls {
+      display: flex;
+      align-items: center;
+    }
+    button {
+      background: #ffcc00;
+      border: none;
+      padding: 5px 10px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #cart-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffcc00;
+      color: #000;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #cart-popup {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      background: #111;
+      border: 1px solid #ffcc00;
+      padding: 15px;
+      max-width: 300px;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Logo.png.png" alt="Logo Blue Bird" />
+    <h1>Menú Blue Bird</h1>
+  </header>
 
-  return (
-    <div className="bg-black min-h-screen text-white p-4">
-      <header className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Blue Bird</h1>
-        <Button className="relative">
-          <ShoppingCart />
-          {cart.length > 0 && <span className="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full w-5 h-5 flex items-center justify-center">{cart.reduce((acc, i) => acc + i.qty, 0)}</span>}
-        </Button>
-      </header>
+  <div id="cart-icon" onclick="toggleCart()">🛒</div>
+  <div id="cart-popup"></div>
 
-      {Object.entries(menuData).map(([category, items]) => (
-        <div key={category} className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">{category}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {items.map(item => (
-              <Card key={item.name}>
-                <CardContent className="p-4">
-                  <h3 className="font-bold">{item.name} - €{item.price.toFixed(2)}</h3>
-                  <p className="text-sm mb-2">{item.ingredients}</p>
-                  <Input type="number" min="1" defaultValue="1" id={`qty-${item.name}`} className="mb-2" />
-                  <Input placeholder="Observaciones (ej: sin cebolla)" id={`note-${item.name}`} className="mb-2" />
-                  <Button onClick={() => {
-                    const qty = parseInt(document.getElementById(`qty-${item.name}`).value) || 1;
-                    const notes = document.getElementById(`note-${item.name}`).value || '';
-                    addToCart(item, qty, notes);
-                  }}>Añadir al carrito</Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+  <main id="menu">
+    <!-- Aquí se insertará el menú con JS -->
+  </main>
 
+  <script>
+    const menuData = {
+      'Empanadas': [
+        { name: 'Jamón y Queso', price: 3.00, ingredients: 'Jamón, Queso' },
+        { name: 'Pollo y Queso', price: 3.20, ingredients: 'Pollo, Queso' },
+        { name: 'Carne y Queso', price: 3.50, ingredients: 'Carne, Queso' },
+        { name: 'Mixta', price: 4.00, ingredients: 'Variada' },
+        { name: 'Pabellón', price: 6.00, ingredients: 'Queso, Carne desmechada, Alubias negras, Plátano frito' }
+      ],
+      'Arepas': [
+        { name: 'Queso', price: 5.00, ingredients: 'Queso' },
+        { name: 'Perico', price: 5.50, ingredients: 'Huevo, Tomate, Cebolla' },
+        { name: 'Carne Mechada', price: 6.00, ingredients: 'Carne Mechada' }
+      ],
+      'Cachapas': [
+        { name: 'Queso de Mano', price: 7.00, ingredients: 'Queso de Mano' },
+        { name: 'Mixta', price: 8.00, ingredients: 'Queso + Carne Mechada' }
+      ]
+    };
+
+    const cart = {};
+
+    function renderMenu() {
+      const menu = document.getElementById('menu');
+      for (let category in menuData) {
+        const catTitle = document.createElement('h2');
+        catTitle.textContent = category;
+        menu.appendChild(catTitle);
+
+        menuData[category].forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'product';
+          div.innerHTML = `
+            <div class="product-details">
+              <strong>${item.name}</strong><br>
+              <small>${item.ingredients}</small><br>
+              <small>$${item.price.toFixed(2)}</small>
+            </div>
+            <div class="product-controls">
+              <button onclick="addToCart('${item.name}', ${item.price})">+</button>
+              <button onclick="removeFromCart('${item.name}')">-</button>
+            </div>
+          `;
+          menu.appendChild(div);
+        });
+      }
+    }
+
+    function addToCart(name, price) {
+      if (!cart[name]) {
+        cart[name] = { quantity: 0, price };
+      }
+      cart[name].quantity++;
+      updateCartPopup();
+    }
+
+    function removeFromCart(name) {
+      if (cart[name]) {
+        cart[name].quantity--;
+        if (cart[name].quantity <= 0) {
+          delete cart[name];
+        }
+        updateCartPopup();
+      }
+    }
+
+    function updateCartPopup() {
+      const popup = document.getElementById('cart-popup');
+      popup.innerHTML = '<h3>Carrito</h3>';
+      let total = 0;
+      for (let item in cart) {
+        popup.innerHTML += `${item}: ${cart[item].quantity} x $${cart[item].price.toFixed(2)}<br>`;
+        total += cart[item].quantity * cart[item].price;
+      }
+      popup.innerHTML += `<strong>Total: $${total.toFixed(2)}</strong>`;
+    }
+
+    function toggleCart() {
+      const popup = document.getElementById('cart-popup');
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    }
+
+    renderMenu();
+  </script>
+</body>
+</html>
