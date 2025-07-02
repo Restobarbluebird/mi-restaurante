@@ -1,78 +1,65 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Restaurante</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #c62828;
-      color: white;
-      padding: 1em;
-    }
-    .menu {
-      padding: 2em;
-    }
-    .producto {
-      border: 1px solid #ccc;
-      padding: 1em;
-      margin: 1em auto;
-      max-width: 300px;
-      border-radius: 8px;
-    }
-    .producto img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    button {
-      background-color: #c62828;
-      color: white;
-      border: none;
-      padding: 0.5em 1em;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #a31515;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="Logo.png.png" alt="Logo del restaurante" style="display: block; margin: 20px auto; width: 350px;" />
-    <h1>Bienvenidos a Restobar Blue Bird</h1>
-  </header>
+import React, { useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { ShoppingCart } from 'lucide-react';
 
-  <section class="menu">
-    <h2>Nuestro Menú</h2>
+const menuData = {
+  Empanadas: [
+    { name: 'Jamón y Queso', price: 3.00, ingredients: 'Jamón, Queso' },
+    { name: 'Pollo y Queso', price: 3.20, ingredients: 'Pollo, Queso' },
+    { name: 'Carne y Queso', price: 3.50, ingredients: 'Carne, Queso' },
+    { name: 'Mixta', price: 4.00, ingredients: 'Variada' },
+    { name: 'Pabellón', price: 6.00, ingredients: 'Queso, Carne desmechada, Alubias negras, Plátano frito' },
+  ],
+  // Otras categorías aquí (Arepas, Cachapas, Hamburguesas, etc)
+};
 
-    <div class="producto">
-      <img src="https://via.placeholder.com/300x200?text=Pizza" alt="Pizza Margarita" />
-      <h3>Pizza Margarita</h3>
-      <p>$8</p>
-      <button>Agregar al pedido</button>
+export default function BlueBirdMenu() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item, qty, notes) => {
+    const existing = cart.find(c => c.name === item.name && c.notes === notes);
+    if (existing) {
+      setCart(cart.map(c => c.name === item.name && c.notes === notes ? { ...c, qty: c.qty + qty } : c));
+    } else {
+      setCart([...cart, { ...item, qty, notes }]);
+    }
+  };
+
+  return (
+    <div className="bg-black min-h-screen text-white p-4">
+      <header className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">Blue Bird</h1>
+        <Button className="relative">
+          <ShoppingCart />
+          {cart.length > 0 && <span className="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full w-5 h-5 flex items-center justify-center">{cart.reduce((acc, i) => acc + i.qty, 0)}</span>}
+        </Button>
+      </header>
+
+      {Object.entries(menuData).map(([category, items]) => (
+        <div key={category} className="mb-6">
+          <h2 className="text-xl font-semibold mb-2">{category}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {items.map(item => (
+              <Card key={item.name}>
+                <CardContent className="p-4">
+                  <h3 className="font-bold">{item.name} - €{item.price.toFixed(2)}</h3>
+                  <p className="text-sm mb-2">{item.ingredients}</p>
+                  <Input type="number" min="1" defaultValue="1" id={`qty-${item.name}`} className="mb-2" />
+                  <Input placeholder="Observaciones (ej: sin cebolla)" id={`note-${item.name}`} className="mb-2" />
+                  <Button onClick={() => {
+                    const qty = parseInt(document.getElementById(`qty-${item.name}`).value) || 1;
+                    const notes = document.getElementById(`note-${item.name}`).value || '';
+                    addToCart(item, qty, notes);
+                  }}>Añadir al carrito</Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
+  );
+}
 
-    <div class="producto">
-      <img src="https://via.placeholder.com/300x200?text=Hamburguesa" alt="Hamburguesa Doble" />
-      <h3>Hamburguesa Doble</h3>
-      <p>$10</p>
-      <button>Agregar al pedido</button>
-    </div>
-
-    <div class="producto">
-      <img src="https://via.placeholder.com/300x200?text=Ensalada" alt="Ensalada César" />
-      <h3>Ensalada César</h3>
-      <p>$6</p>
-      <button>Agregar al pedido</button>
-    </div>
-
-  </section>
-</body>
-</html>
