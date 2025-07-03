@@ -2,169 +2,184 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blue Bird Restobar</title>
+  <title>Menú Blue Bird</title>
   <style>
     body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #000;
-      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #f9f9f9;
+      color: #333;
     }
-    header {
+    h1 {
       text-align: center;
-      padding: 20px;
+      color: #005599;
     }
-    header img {
-      max-width: 200px;
+    .category {
+      margin-top: 2rem;
     }
-    h2 {
-      border-bottom: 2px solid #ffcc00;
-      padding-bottom: 5px;
-      margin-top: 30px;
+    .category h2 {
+      background: #005599;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
     }
-    .product {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      border-bottom: 1px solid #333;
+    .item {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #ddd;
     }
-    .product-details {
-      flex: 1;
+    .item:last-child {
+      border-bottom: none;
     }
-    .product-controls {
-      display: flex;
-      align-items: center;
-    }
-    button {
-      background: #ffcc00;
-      border: none;
-      padding: 5px 10px;
-      margin: 0 5px;
-      cursor: pointer;
+    .item-name {
       font-weight: bold;
     }
-    #cart-icon {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #ffcc00;
-      color: #000;
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-weight: bold;
+    .price {
+      float: right;
     }
-    #cart-popup {
-      display: none;
-      position: fixed;
-      top: 60px;
-      right: 20px;
-      background: #111;
-      border: 1px solid #ffcc00;
-      padding: 15px;
-      max-width: 300px;
-      z-index: 100;
+    .ingredients {
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="Logo.png.png" alt="Logo Blue Bird" />
-    <h1>Menú Blue Bird</h1>
-  </header>
+  <h1>Menú Blue Bird</h1>
 
-  <div id="cart-icon" onclick="toggleCart()">🛒</div>
-  <div id="cart-popup"></div>
-
-  <main id="menu">
-    <!-- Aquí se insertará el menú con JS -->
-  </main>
+  <div id="menu"></div>
 
   <script>
+    // Tu menú completo:
     const menuData = {
-      'Empanadas': [
-        { name: 'Jamón y Queso', price: 3.00, ingredients: 'Jamón, Queso' },
-        { name: 'Pollo y Queso', price: 3.20, ingredients: 'Pollo, Queso' },
-        { name: 'Carne y Queso', price: 3.50, ingredients: 'Carne, Queso' },
-        { name: 'Mixta', price: 4.00, ingredients: 'Variada' },
-        { name: 'Pabellón', price: 6.00, ingredients: 'Queso, Carne desmechada, Alubias negras, Plátano frito' }
-      ],
-      'Arepas': [
-        { name: 'Queso', price: 5.00, ingredients: 'Queso' },
-        { name: 'Perico', price: 5.50, ingredients: 'Huevo, Tomate, Cebolla' },
-        { name: 'Carne Mechada', price: 6.00, ingredients: 'Carne Mechada' }
-      ],
-      'Cachapas': [
-        { name: 'Queso de Mano', price: 7.00, ingredients: 'Queso de Mano' },
-        { name: 'Mixta', price: 8.00, ingredients: 'Queso + Carne Mechada' }
-      ]
-    };
+      const menuData = {
+  "Empanadas": [
+    { name: "Jamón y Queso", price: 3.00, ingredients: "Jamón, Queso" },
+    { name: "Pollo y Queso", price: 3.20, ingredients: "Pollo, Queso" },
+    { name: "Carne y Queso", price: 3.50, ingredients: "Carne, Queso" },
+    { name: "Mixta", price: 4.00, ingredients: "Variada" },
+    { name: "Pabellón", price: 6.00, ingredients: "Queso, Carne desmechada, Alubias negras, Plátano frito" },
+  ],
+  "Arepas": [
+    { name: "Jamón y Queso", price: 6.00, ingredients: "Jamón, Queso" },
+    { name: "Pollo y Queso", price: 7.00, ingredients: "Pollo, Queso" },
+    { name: "Carne y Queso", price: 8.00, ingredients: "Carne, Queso" },
+    { name: "Pabellón", price: 9.50, ingredients: "Queso, Carne desmechada, Alubias negras, Plátano frito" },
+  ],
+  "Cachapas": [
+    { name: "Queso", price: 8.50, ingredients: "Queso" },
+    { name: "Jamón y Queso", price: 9.50, ingredients: "Jamón, Queso" },
+    { name: "Pollo Desmechado", price: 11.00, ingredients: "Pollo Desmechado" },
+    { name: "Carne Desmechada", price: 12.00, ingredients: "Carne Desmechada" },
+    { name: "Mixta", price: 13.00, ingredients: "Pollo, Carne y Queso" },
+    { name: "Ración Extra Cochino Frito", price: 3.50, ingredients: "" },
+  ],
+  "Hamburguesas": [
+    { name: "Clásica", price: 7.00, ingredients: "Carne o Pollo, Lechuga, Tomate, Cebolla, Mayonesa, Ketchup" },
+    { name: "Crispy", price: 8.50, ingredients: "Pollo empanizado, Lechuga, Tomate, Queso, Jamón, Patatas paja, Mayonesa, Ketchup, Salsa de la casa" },
+    { name: "BBQ", price: 10.00, ingredients: "Carne, Lechuga, Tomate, Queso, Jamón, Chorizo, Bacón, Cebolla crujiente, Mayonesa, Ketchup, Salsa de la casa, Salsa BBQ" },
+    { name: "Doble", price: 12.00, ingredients: "Dos hamburguesas, Lechuga, Tomate, Cebolla, Pepinillos, Huevo, Doble queso, Bacon, Patatas paja, Salsa de la casa" },
+    { name: "Blue Bird", price: 12.50, ingredients: "Carne, Lomo de cerdo, Lechuga, Tomate, Pepinillo, Cebolla caramelizada, Huevo, Bacon, Jamón, Queso, Patatas paja, Salsa de la casa" },
+    { name: "Tequeburguer", price: 15.00, ingredients: "Tapa de tequeño, Doble carne, Doble queso, Jamón York, Bacon, Cebolla caramelizada" },
+  ],
+  "Perros Calientes": [
+    { name: "Normal", price: 4.50, ingredients: "Salchicha Frankfurt, Cebolla, Patatas paja, Mayonesa, Ketchup, Mostaza" },
+    { name: "Especial", price: 6.00, ingredients: "Salchicha Frankfurt, Repollo, Zanahoria, Cebolla crujiente, Tocineta, Maíz, Queso, Mayonesa, Ketchup, Mostaza, Salsa de la casa" },
+    { name: "Bluebird", price: 7.50, ingredients: "Salchicha Frankfurt, Repollo, Zanahoria, Pollo y carne desmechada, Cebolla caramelizada, Maíz, Tocineta, Patatas paja, Queso, Mayonesa, Ketchup, Mostaza, Salsa de la casa" },
+  ],
+  "Bocadillos": [
+    { name: "Bacon y Queso", price: 5.50, ingredients: "" },
+    { name: "Bacon, Queso y Salchichas", price: 6.00, ingredients: "" },
+    { name: "Lomo con Queso y Pimientos", price: 7.30, ingredients: "" },
+    { name: "Pechuga de Pavo", price: 7.80, ingredients: "Queso, Bacon, Tomate, Lechuga, Cebolla" },
+    { name: "Filete de Ternera", price: 7.80, ingredients: "Con queso y pimientos" },
+  ],
+  "Burritos": [
+    { name: "Pollo", price: 5.50, ingredients: "Tortilla de trigo rellena de pollo con vegetales salteados, queso y salsa de la casa" },
+    { name: "Carne", price: 6.00, ingredients: "Tortilla de trigo rellena de carne con vegetales salteados, queso y salsa de la casa" },
+    { name: "Bluebird", price: 6.50, ingredients: "Tortilla de trigo rellena de pollo, carne, bacon, maíz, vegetales salteados, patatas paja, queso y salsa de la casa" },
+  ],
+  "Sándwiches": [
+    { name: "Mixto", price: 3.50, ingredients: "Jamón York y Queso" },
+    { name: "Picante", price: 4.50, ingredients: "Jamón York, Queso, Huevo cocido, Mayonesa y Salsa" },
+    { name: "Vegetal", price: 5.50, ingredients: "Jamón York, Queso, Lechuga, Tomate, Huevo frito, Espárragos y Mayonesa" },
+    { name: "Bonito", price: 6.00, ingredients: "Jamón York, Queso, Huevo frito, Tomate, Bonito y Mayonesa" },
+    { name: "Blue Bird", price: 6.50, ingredients: "Jamón York, Queso, Pepinillo, Espárragos, Bacon, Huevo frito, Mayonesa y Salsa de la casa" },
+  ],
+  "Platos Combinados": [
+    { name: "Dos huevos fritos o dos salchichas, chorizo, bacon y patatas", price: 10.50, ingredients: "" },
+    { name: "Dos hamburguesas, huevo frito, bacon y patatas", price: 11.50, ingredients: "" },
+    { name: "Pechuga de pavo, ensalada, huevo frito y patatas", price: 12.00, ingredients: "" },
+    { name: "Pollo empanizado, ensalada, pimientos y patatas", price: 12.00, ingredients: "" },
+    { name: "Lomo, huevo frito, pimientos y patatas", price: 12.00, ingredients: "" },
+    { name: "Escoge la proteína (pollo, ternera o cerdo) huevo frito, pimientos, ensalada y patatas", price: 12.50, ingredients: "" },
+    { name: "Entrecot (acompañado de patatas y pimientos)", price: 13.50, ingredients: "" },
+    { name: "Parrillada Mixta para una persona", price: 15.00, ingredients: "Pechuga de pollo, filete de ternera, chuleta de cerdo, chorizo, pimientos y patatas fritas con salsas a elegir" },
+    { name: "Parrillada Mixta para dos personas", price: 25.00, ingredients: "Pechuga de pollo, filete de ternera, chuleta de cerdo, chorizo, pimientos y patatas fritas con salsas a elegir" },
+  ],
+  "Raciones": [
+    { name: "Patatas fritas con 3 salsas (pequeña)", price: 4.50, ingredients: "" },
+    { name: "Patatas fritas con 3 salsas (grande)", price: 8.00, ingredients: "" },
+    { name: "Salchipapas", price: 10.00, ingredients: "Chorizo, maíz, queso, mayonesa, ketchup, mostaza y salsa de la casa" },
+    { name: "Nachos", price: 10.00, ingredients: "Carne y pollo desmechado, pico de gallo, cheddar, queso mozzarella, jalapeños y nata" },
+    { name: "Dedos de mozzarella (8 unidades)", price: 7.00, ingredients: "Acompañados de salsa de ajo" },
+    { name: "Tequeños (6 unidades)", price: 7.00, ingredients: "Acompañados de salsa de ajo" },
+    { name: "Alitas a la BBQ", price: 7.00, ingredients: "Acompañadas de patatas" },
+    { name: "Alitas picantes empanadas", price: 7.00, ingredients: "Acompañadas de patatas" },
+    { name: "Jalapeños rellenos (6 unidades)", price: 5.00, ingredients: "De queso cheddar" },
+    { name: "Rabas (fines de semana y festivos)", price: 6.00, ingredients: "" },
+  ],
+  "Ensaladas": [
+    { name: "Normal", price: 5.80, ingredients: "Lechuga, tomate, cebolla" },
+    { name: "Mixta", price: 6.80, ingredients: "Lechuga variada, tomate, cebolla, atún y huevo cocido" },
+    { name: "Blue Bird", price: 7.80, ingredients: "Lechuga, tomate, cebolla, queso, remolacha y huevo cocido" },
+  ],
+  "Menú Infantil": [
+    { name: "Quesadillas de jamón y queso", price: 4.80, ingredients: "Acompañadas de patatas fritas con ketchup" },
+    { name: "Patatas fritas con salchicha", price: 5.00, ingredients: "Acompañado de 3 salsas" },
+    { name: "Tenders de pollo", price: 5.80, ingredients: "5 unidades con patatas fritas y ketchup" },
+  ],
+  "Postres": [
+    { name: "Postre del día", price: 3.50, ingredients: "" },
+    { name: "Tarta de maíz", price: 3.50, ingredients: "" },
+    { name: "Mouse de arándanos", price: 3.00, ingredients: "" },
+    { name: "Postre de la casa", price: 3.00, ingredients: "" },
+    { name: "Helado", price: 3.00, ingredients: "" },
+  ],
+};
+    const menuDiv = document.getElementById("menu");
 
-    const cart = {};
+    for (const category in menuData) {
+      const categoryDiv = document.createElement("div");
+      categoryDiv.classList.add("category");
 
-    function renderMenu() {
-      const menu = document.getElementById('menu');
-      for (let category in menuData) {
-        const catTitle = document.createElement('h2');
-        catTitle.textContent = category;
-        menu.appendChild(catTitle);
+      const categoryTitle = document.createElement("h2");
+      categoryTitle.textContent = category;
+      categoryDiv.appendChild(categoryTitle);
 
-        menuData[category].forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'product';
-          div.innerHTML = `
-            <div class="product-details">
-              <strong>${item.name}</strong><br>
-              <small>${item.ingredients}</small><br>
-              <small>$${item.price.toFixed(2)}</small>
-            </div>
-            <div class="product-controls">
-              <button onclick="addToCart('${item.name}', ${item.price})">+</button>
-              <button onclick="removeFromCart('${item.name}')">-</button>
-            </div>
-          `;
-          menu.appendChild(div);
-        });
-      }
+      menuData[category].forEach(item => {
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("item");
+
+        const nameSpan = document.createElement("span");
+        nameSpan.classList.add("item-name");
+        nameSpan.textContent = item.name;
+
+        const priceSpan = document.createElement("span");
+        priceSpan.classList.add("price");
+        priceSpan.textContent = `€${item.price.toFixed(2)}`;
+
+        const ingredientsP = document.createElement("p");
+        ingredientsP.classList.add("ingredients");
+        ingredientsP.textContent = item.ingredients;
+
+        itemDiv.appendChild(nameSpan);
+        itemDiv.appendChild(priceSpan);
+        if (item.ingredients) itemDiv.appendChild(ingredientsP);
+
+        categoryDiv.appendChild(itemDiv);
+      });
+
+      menuDiv.appendChild(categoryDiv);
     }
-
-    function addToCart(name, price) {
-      if (!cart[name]) {
-        cart[name] = { quantity: 0, price };
-      }
-      cart[name].quantity++;
-      updateCartPopup();
-    }
-
-    function removeFromCart(name) {
-      if (cart[name]) {
-        cart[name].quantity--;
-        if (cart[name].quantity <= 0) {
-          delete cart[name];
-        }
-        updateCartPopup();
-      }
-    }
-
-    function updateCartPopup() {
-      const popup = document.getElementById('cart-popup');
-      popup.innerHTML = '<h3>Carrito</h3>';
-      let total = 0;
-      for (let item in cart) {
-        popup.innerHTML += `${item}: ${cart[item].quantity} x $${cart[item].price.toFixed(2)}<br>`;
-        total += cart[item].quantity * cart[item].price;
-      }
-      popup.innerHTML += `<strong>Total: $${total.toFixed(2)}</strong>`;
-    }
-
-    function toggleCart() {
-      const popup = document.getElementById('cart-popup');
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-    }
-
-    renderMenu();
   </script>
 </body>
 </html>
