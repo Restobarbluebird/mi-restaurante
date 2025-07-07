@@ -192,20 +192,16 @@
   }
 </style>
 
-<!-- CLÁSICA con selector de carne/pollo -->
-<div class="item">
-  <span class="name">Clásica (Lechuga, tomate, cebolla, mayonesa y kétchup)</span>
+  <span class="name">Hamburguesa Clásica</span>
   <div class="item-controls">
-    <div class="burger-options">
-      <select class="custom-select" id="tipoClasica" required>
-        <option value="">Carne o Pollo</option>
-        <option value="Carne">Carne</option>
-        <option value="Pollo">Pollo</option>
-      </select>
-    </div>
-    <span class="price">7.00€</span>
-    <button onclick="removeItem('Hamburguesas', 'Clásica')">−</button>
-    <button onclick="addBurgerWithOptions('Clásica', 7.00, 'tipoClasica', null)">+</button>
+    <span class="price">9.50€</span>
+    <select id="carneClasica">
+      <option value="Res">Res</option>
+      <option value="Pollo">Pollo</option>
+      <option value="Mixta">Mixta</option>
+    </select>
+    <button onclick="removeItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value)">−</button>
+    <button onclick="addItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value, 9.50)">+</button>
   </div>
 </div>
 
