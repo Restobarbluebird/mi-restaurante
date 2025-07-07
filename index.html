@@ -10,8 +10,13 @@
       font-family: 'Rubik', sans-serif;
       background-color: #111;
       color: white;
-      padding: 20px;
+      padding: 0;
       margin: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
     }
     .logo {
       max-width: 120px;
@@ -32,20 +37,29 @@
     }
     .item {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 10px 0;
+      flex-direction: column;
+      gap: 6px;
       background-color: #222;
       padding: 10px;
       border-radius: 5px;
+      margin: 10px 0;
     }
-    .item span.price {
-      margin-left: 10px;
+    .item span {
+      font-size: 1rem;
+    }
+    .item-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .item-controls button {
+      margin: 0 5px;
+    }
+    .price {
       font-weight: bold;
       color: #0f0;
     }
     button {
-      margin: 0 5px;
       background-color: #FFD700;
       border: none;
       padding: 5px 10px;
@@ -98,52 +112,54 @@
 </head>
 <body>
   <div class="cart-floating" id="cart-count" onclick="scrollToCart()">0</div>
-  <header>
-    <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
-    <h1>Restobar Blue Bird</h1>
-  </header>
-  <main>
-    <section id="menu">
-      <h2>Menú</h2>
+  <div class="container">
+    <header>
+      <img src="Logo.png.png" alt="Logo Restobar Blue Bird" class="logo"/>
+      <h1>Restobar Blue Bird</h1>
+    </header>
+    <main>
+      <section id="menu">
+        <h2>Menú</h2>
 
-      <!-- EMPANADAS -->
-      <h3 class="section-title">Empanadas</h3>
-      <div class="item"><span>Jamón y Queso</span><button onclick="addItem('Empanadas', 'Jamón y Queso', 3.00)">+</button><button onclick="removeItem('Empanadas', 'Jamón y Queso')">−</button><span class="price">3.00€</span></div>
-      <div class="item"><span>Pollo y Queso</span><button onclick="addItem('Empanadas', 'Pollo y Queso', 3.20)">+</button><button onclick="removeItem('Empanadas', 'Pollo y Queso')">−</button><span class="price">3.20€</span></div>
-      <div class="item"><span>Carne y Queso</span><button onclick="addItem('Empanadas', 'Carne y Queso', 3.50)">+</button><button onclick="removeItem('Empanadas', 'Carne y Queso')">−</button><span class="price">3.50€</span></div>
-      <div class="item"><span>Mixta</span><button onclick="addItem('Empanadas', 'Mixta', 4.00)">+</button><button onclick="removeItem('Empanadas', 'Mixta')">−</button><span class="price">4.00€</span></div>
-      <div class="item"><span>Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><button onclick="addItem('Empanadas', 'Pabellón', 6.00)">+</button><button onclick="removeItem('Empanadas', 'Pabellón')">−</button><span class="price">6.00€</span></div>
+        <!-- EMPANADAS -->
+        <h3 class="section-title">Empanadas</h3>
+        <div class="item"><span>Jamón y Queso</span><div class="item-controls"><button onclick="addItem('Empanadas', 'Jamón y Queso', 3.00)">+</button><button onclick="removeItem('Empanadas', 'Jamón y Queso')">−</button><span class="price">3.00€</span></div></div>
+        <div class="item"><span>Pollo y Queso</span><div class="item-controls"><button onclick="addItem('Empanadas', 'Pollo y Queso', 3.20)">+</button><button onclick="removeItem('Empanadas', 'Pollo y Queso')">−</button><span class="price">3.20€</span></div></div>
+        <div class="item"><span>Carne y Queso</span><div class="item-controls"><button onclick="addItem('Empanadas', 'Carne y Queso', 3.50)">+</button><button onclick="removeItem('Empanadas', 'Carne y Queso')">−</button><span class="price">3.50€</span></div></div>
+        <div class="item"><span>Mixta</span><div class="item-controls"><button onclick="addItem('Empanadas', 'Mixta', 4.00)">+</button><button onclick="removeItem('Empanadas', 'Mixta')">−</button><span class="price">4.00€</span></div></div>
+        <div class="item"><span>Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><button onclick="addItem('Empanadas', 'Pabellón', 6.00)">+</button><button onclick="removeItem('Empanadas', 'Pabellón')">−</button><span class="price">6.00€</span></div></div>
 
-      <!-- AREPAS -->
-      <h3 class="section-title">Arepas</h3>
-      <div class="item"><span>Jamón y Queso</span><button onclick="addItem('Arepas', 'Jamón y Queso', 6.00)">+</button><button onclick="removeItem('Arepas', 'Jamón y Queso')">−</button><span class="price">6.00€</span></div>
-      <div class="item"><span>Pollo y Queso</span><button onclick="addItem('Arepas', 'Pollo y Queso', 7.00)">+</button><button onclick="removeItem('Arepas', 'Pollo y Queso')">−</button><span class="price">7.00€</span></div>
-      <div class="item"><span>Carne y Queso</span><button onclick="addItem('Arepas', 'Carne y Queso', 8.00)">+</button><button onclick="removeItem('Arepas', 'Carne y Queso')">−</button><span class="price">8.00€</span></div>
-      <div class="item"><span>Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><button onclick="addItem('Arepas', 'Pabellón', 9.50)">+</button><button onclick="removeItem('Arepas', 'Pabellón')">−</button><span class="price">9.50€</span></div>
+        <!-- AREPAS -->
+        <h3 class="section-title">Arepas</h3>
+        <div class="item"><span>Jamón y Queso</span><div class="item-controls"><button onclick="addItem('Arepas', 'Jamón y Queso', 6.00)">+</button><button onclick="removeItem('Arepas', 'Jamón y Queso')">−</button><span class="price">6.00€</span></div></div>
+        <div class="item"><span>Pollo y Queso</span><div class="item-controls"><button onclick="addItem('Arepas', 'Pollo y Queso', 7.00)">+</button><button onclick="removeItem('Arepas', 'Pollo y Queso')">−</button><span class="price">7.00€</span></div></div>
+        <div class="item"><span>Carne y Queso</span><div class="item-controls"><button onclick="addItem('Arepas', 'Carne y Queso', 8.00)">+</button><button onclick="removeItem('Arepas', 'Carne y Queso')">−</button><span class="price">8.00€</span></div></div>
+        <div class="item"><span>Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><button onclick="addItem('Arepas', 'Pabellón', 9.50)">+</button><button onclick="removeItem('Arepas', 'Pabellón')">−</button><span class="price">9.50€</span></div></div>
 
-      <div class="cart" id="cart">
-        <h3>🛒 Carrito de compras</h3>
-        <div class="cart-list" id="cart-list"></div>
-        <textarea class="cart-observations" id="observations" placeholder="Observaciones (sin cebolla, etc)"></textarea>
-        <input class="cart-input" id="name" placeholder="Nombre y Apellido" required />
-        <input class="cart-input" id="phone" placeholder="Teléfono" required />
-        <input class="cart-input" id="address" placeholder="Dirección" required />
-        <select class="cart-select" id="payment">
-          <option value="Efectivo">Efectivo</option>
-          <option value="Tarjeta">Tarjeta</option>
-          <option value="Bizum">Bizum</option>
-        </select>
-        <p style="color: #FFD700; font-weight: bold; margin-top: 10px;">🚚 Domicilio solo para Baracaldo por favor.</p>
-        <p style="margin-top: 10px; font-weight: bold; color: #FFD700;">Costo de domicilio: 3€</p>
-        <p id="total" style="margin-top: 5px; font-weight: bold; color: white;">Total: 0€</p>
-        <a href="#" class="whatsapp" id="whatsapp-link" onclick="sendOrder(event)">Realizar pedido por WhatsApp</a>
-        <p id="form-warning" style="color: red; display:none;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 Restobar Blue Bird</p>
-  </footer>
+        <div class="cart" id="cart">
+          <h3>🛒 Carrito de compras</h3>
+          <div class="cart-list" id="cart-list"></div>
+          <textarea class="cart-observations" id="observations" placeholder="Observaciones (sin cebolla, etc)"></textarea>
+          <input class="cart-input" id="name" placeholder="Nombre y Apellido" required />
+          <input class="cart-input" id="phone" placeholder="Teléfono" required />
+          <input class="cart-input" id="address" placeholder="Dirección" required />
+          <select class="cart-select" id="payment">
+            <option value="Efectivo">Efectivo</option>
+            <option value="Tarjeta">Tarjeta</option>
+            <option value="Bizum">Bizum</option>
+          </select>
+          <p style="color: #FFD700; font-weight: bold; margin-top: 10px;">🚚 Domicilio solo para Baracaldo por favor.</p>
+          <p style="margin-top: 10px; font-weight: bold; color: #FFD700;">Costo de domicilio: 3€</p>
+          <p id="total" style="margin-top: 5px; font-weight: bold; color: white;">Total: 0€</p>
+          <a href="#" class="whatsapp" id="whatsapp-link" onclick="sendOrder(event)">Realizar pedido por WhatsApp</a>
+          <p id="form-warning" style="color: red; display:none;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025 Restobar Blue Bird</p>
+    </footer>
+  </div>
   <script>
     // Aquí irá el código JavaScript completo para manejo de carrito, total, WhatsApp, etc.
   </script>
