@@ -396,6 +396,72 @@
   </div>
 </div>
 
+        <!-- PLATOS COMBINADOS -->
+<h3 class="section-title">Platos Combinados</h3>
+
+<div class="item"><span class="name">Dos huevos fritos o dos salchichas, chorizo, bacon y patatas</span>
+  <div class="item-controls"><span class="price">10.50€</span>
+    <button onclick="removeItem('Platos Combinados', 'Desayuno Inglés')">−</button>
+    <button onclick="addItem('Platos Combinados', 'Desayuno Inglés', 10.50)">+</button>
+  </div>
+</div>
+
+<div class="item"><span class="name">Dos hamburguesas, huevo frito, bacon y patatas</span>
+  <div class="item-controls"><span class="price">11.50€</span>
+    <button onclick="removeItem('Platos Combinados', 'Hamburguesas con huevo')">−</button>
+    <button onclick="addItem('Platos Combinados', 'Hamburguesas con huevo', 11.50)">+</button>
+  </div>
+</div>
+
+<div class="item"><span class="name">Pechuga de pavo, ensalada, huevo frito y patatas</span>
+  <div class="item-controls"><span class="price">12.00€</span>
+    <button onclick="removeItem('Platos Combinados', 'Pechuga de pavo')">−</button>
+    <button onclick="addItem('Platos Combinados', 'Pechuga de pavo', 12.00)">+</button>
+  </div>
+</div>
+
+<div class="item"><span class="name">Pollo empanizado, ensalada, pimientos y patatas</span>
+  <div class="item-controls"><span class="price">12.00€</span>
+    <button onclick="removeItem('Platos Combinados', 'Pollo empanizado')">−</button>
+    <button onclick="addItem('Platos Combinados', 'Pollo empanizado', 12.00)">+</button>
+  </div>
+</div>
+
+<div class="item"><span class="name">Lomo, huevo frito, pimientos y patatas</span>
+  <div class="item-controls"><span class="price">12.00€</span>
+    <button onclick="removeItem('Platos Combinados', 'Lomo')">−</button>
+    <button onclick="addItem('Platos Combinados', 'Lomo', 12.00)">+</button>
+  </div>
+</div>
+
+<div class="item"><span class="name">Escoge la proteína: (Pollo, Ternera o Cerdo), huevo frito, pimientos, ensalada y patatas</span>
+  <div class="item-controls"><span class="price">12.50€</span>
+    <button onclick="removeItem('Platos Combinados', 'Proteína personalizada')">−</button>
+    <button onclick="addItem('Platos Combinados', 'Proteína personalizada', 12.50)">+</button>
+  </div>
+</div>
+
+<div class="item"><span class="name">Entrecot (acompañado de patatas y pimientos)</span>
+  <div class="item-controls"><span class="price">13.50€</span>
+    <button onclick="removeItem('Platos Combinados', 'Entrecot')">−</button>
+    <button onclick="addItem('Platos Combinados', 'Entrecot', 13.50)">+</button>
+  </div>
+</div>
+
+<div class="item">
+  <span class="name">Parrillada Mixta: Pechuga de pollo, filete de ternera, chuleta de cerdo, chorizo, pimientos y patatas fritas acompañadas de salsas a elegir</span>
+  <div class="item-controls">
+    <select class="custom-select" id="parrilladaCantidad" required>
+      <option value="">Tamaño</option>
+      <option value="Una persona">Para una persona - 15.00€</option>
+      <option value="Dos personas">Para dos personas - 25.00€</option>
+    </select>
+    <button onclick="removeItem('Platos Combinados', 'Parrillada Mixta')">−</button>
+    <button onclick="addItemWithOption('Parrillada Mixta', 'parrilladaCantidad', {'Una persona': 15.00, 'Dos personas': 25.00})">+</button>
+  </div>
+</div>
+
+
   
         <div class="cart" id="cart">
           <h3>🛒 Carrito de compras</h3>
