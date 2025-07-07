@@ -104,7 +104,7 @@
       text-align: left;
       margin-bottom: 10px;
     }
-    .cart-observations {
+    .cart-observations, .cart-input {
       width: 100%;
       padding: 10px;
       border-radius: 5px;
@@ -112,6 +112,23 @@
       border: 1px solid #FFD700;
       background-color: #000;
       color: #fff;
+    }
+    .cart-floating {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #FFD700;
+      color: #000;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      z-index: 999;
+      box-shadow: 0 0 10px rgba(255,215,0,0.5);
     }
     .whatsapp {
       display: block;
@@ -151,8 +168,9 @@
   </style>
 </head>
 <body>
+  <div class="cart-floating" id="cart-count">0</div>
   <header>
-    <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
+    <img src="Logo.png.png" alt="Logo Restobar Blue Bird" class="logo"/>
     <h1>Restobar Blue Bird</h1>
   </header>
   <section class="slider">
@@ -173,6 +191,9 @@
         <h3>🛒 Carrito de Compras</h3>
         <ul id="cart-list" class="cart-list"></ul>
         <textarea id="observations" class="cart-observations" placeholder="Observaciones (sin cebolla, sin salsas, etc)"></textarea>
+        <input type="text" id="name" class="cart-input" placeholder="Nombre y Apellido" required />
+        <input type="tel" id="phone" class="cart-input" placeholder="Teléfono" required />
+        <input type="text" id="address" class="cart-input" placeholder="Dirección de entrega" required />
         <p><strong>Total:</strong> €<span id="cart-total">0.00</span></p>
       </div>
       <a href="#" id="whatsapp-link" class="whatsapp" target="_blank">📲 Pedir por WhatsApp</a>
@@ -210,23 +231,36 @@
       const list = document.getElementById('cart-list');
       const total = document.getElementById('cart-total');
       const observations = document.getElementById('observations').value;
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
       const whatsappLink = document.getElementById('whatsapp-link');
+      const cartCount = document.getElementById('cart-count');
+
       list.innerHTML = '';
       let sum = 0;
+      let totalItems = 0;
       let message = 'Hola! Quiero hacer un pedido:%0A';
+
       cart.forEach(({ name, price, qty }) => {
         sum += price * qty;
+        totalItems += qty;
         message += `${qty} x ${name} (€${(price * qty).toFixed(2)})%0A`;
         const li = document.createElement('li');
         li.textContent = `${qty} x ${name} (€${(price * qty).toFixed(2)})`;
         list.appendChild(li);
       });
-      if (observations) {
-        message += `%0A📝 Observaciones: ${observations}`;
-      }
+
+      if (observations) message += `%0A📝 Observaciones: ${observations}`;
+      if (name) message += `%0A👤 Nombre: ${name}`;
+      if (phone) message += `%0A📞 Teléfono: ${phone}`;
+      if (address) message += `%0A📍 Dirección: ${address}`;
+
       message += `%0A💰 Total: €${sum.toFixed(2)}`;
       whatsappLink.href = `https://wa.me/34944375281?text=${message}`;
+
       total.textContent = sum.toFixed(2);
+      cartCount.textContent = totalItems;
     }
   </script>
 </body>
