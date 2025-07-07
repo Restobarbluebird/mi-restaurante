@@ -192,18 +192,21 @@
   }
 </style>
 
-  <span class="name">Hamburguesa Clásica</span>
+ <span class="name">Hamburguesa Clásica</span>
   <div class="item-controls">
     <span class="price">9.50€</span>
-    <select id="carneClasica">
-      <option value="Res">Res</option>
-      <option value="Pollo">Pollo</option>
-      <option value="Mixta">Mixta</option>
-    </select>
-    <button onclick="removeItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value)">−</button>
-    <button onclick="addItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value, 9.50)">+</button>
+
+    <!-- Contenedor para mantener select y botones alineados -->
+    <div class="control-group">
+      <select id="carneClasica" class="custom-select">
+        <option value="Croqueta">Croqueta</option>
+        <option value="Pollo">Pollo</option>
+        <option value="Mixta">Mixta</option>
+      </select>
+      <button onclick="removeItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value)">−</button>
+      <button onclick="addItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value, 9.50)">+</button>
+    </div>
   </div>
-</div>
 
 <!-- RESTO SIN SELECTORES -->
 <div class="item">
