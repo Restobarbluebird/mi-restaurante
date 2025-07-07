@@ -385,4 +385,46 @@
     }
   </script>
 </body>
+  <script>
+  const cart = {};
+
+  function addItem(section, name, price) {
+    const key = `${section}-${name}`;
+    if (!cart[key]) {
+      cart[key] = { section, name, price, quantity: 1 };
+    } else {
+      cart[key].quantity += 1;
+    }
+    console.log("Carrito:", cart);
+  }
+
+  function removeItem(section, name) {
+    const key = `${section}-${name}`;
+    if (cart[key]) {
+      cart[key].quantity -= 1;
+      if (cart[key].quantity <= 0) {
+        delete cart[key];
+      }
+    }
+    console.log("Carrito:", cart);
+  }
+
+  function addBurgerWithOptions(name, price, tipoId, panId) {
+    const pan = document.getElementById(panId)?.value || '';
+    const tipo = tipoId ? (document.getElementById(tipoId)?.value || '') : '';
+
+    if (!pan) {
+      alert("Por favor selecciona el pan");
+      return;
+    }
+
+    if (tipoId && !tipo) {
+      alert("Por favor selecciona si es de carne o de pollo");
+      return;
+    }
+
+    const fullName = tipo ? `${name} (${tipo}, Pan ${pan})` : `${name} (Pan ${pan})`;
+    addItem("Hamburguesas", fullName, price);
+  }
+</script>
 </html>
