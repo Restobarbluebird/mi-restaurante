@@ -102,6 +102,16 @@
     }
     .cart-list {
       text-align: left;
+      margin-bottom: 10px;
+    }
+    .cart-observations {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      border: 1px solid #FFD700;
+      background-color: #000;
+      color: #fff;
     }
     .whatsapp {
       display: block;
@@ -110,7 +120,7 @@
       color: white;
       padding: 12px 20px;
       text-decoration: none;
-      margin: 30px auto 10px;
+      margin: 20px auto 10px;
       width: fit-content;
       border-radius: 8px;
       font-weight: bold;
@@ -142,7 +152,7 @@
 </head>
 <body>
   <header>
-    <img src="Logo.png.png" alt="Logo Restobar Blue Bird" class="logo"/>
+    <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
     <h1>Restobar Blue Bird</h1>
   </header>
   <section class="slider">
@@ -154,17 +164,18 @@
     <section id="menu">
       <h2>Menú</h2>
       <div class="section-title">EMPANADAS</div>
-      <div class="item"><span>JAMÓN Y QUESO</span><span class="price">€3.00</span><button onclick="addToCart('Jamón y Queso', 3.00)">+</button></div>
-      <div class="item"><span>POLLO Y QUESO</span><span class="price">€3.20</span><button onclick="addToCart('Pollo y Queso', 3.20)">+</button></div>
-      <div class="item"><span>CARNE Y QUESO</span><span class="price">€3.50</span><button onclick="addToCart('Carne y Queso', 3.50)">+</button></div>
-      <div class="item"><span>MIXTA</span><span class="price">€4.00</span><button onclick="addToCart('Mixta', 4.00)">+</button></div>
-      <div class="item"><span>PABELLÓN</span><span class="price">€6.00</span><button onclick="addToCart('Pabellón', 6.00)">+</button></div>
+      <div class="item"><span>JAMÓN Y QUESO</span><span class="price">€3.00</span><button onclick="addToCart('Jamón y Queso', 3.00)">+</button><button onclick="removeFromCart('Jamón y Queso')">–</button></div>
+      <div class="item"><span>POLLO Y QUESO</span><span class="price">€3.20</span><button onclick="addToCart('Pollo y Queso', 3.20)">+</button><button onclick="removeFromCart('Pollo y Queso')">–</button></div>
+      <div class="item"><span>CARNE Y QUESO</span><span class="price">€3.50</span><button onclick="addToCart('Carne y Queso', 3.50)">+</button><button onclick="removeFromCart('Carne y Queso')">–</button></div>
+      <div class="item"><span>MIXTA</span><span class="price">€4.00</span><button onclick="addToCart('Mixta', 4.00)">+</button><button onclick="removeFromCart('Mixta')">–</button></div>
+      <div class="item"><span>PABELLÓN</span><span class="price">€6.00</span><button onclick="addToCart('Pabellón', 6.00)">+</button><button onclick="removeFromCart('Pabellón')">–</button></div>
       <div class="cart">
         <h3>🛒 Carrito de Compras</h3>
         <ul id="cart-list" class="cart-list"></ul>
+        <textarea id="observations" class="cart-observations" placeholder="Observaciones (sin cebolla, sin salsas, etc)"></textarea>
         <p><strong>Total:</strong> €<span id="cart-total">0.00</span></p>
       </div>
-      <a href="https://wa.me/34944375281" class="whatsapp" target="_blank">📲 Pedir por WhatsApp</a>
+      <a href="#" id="whatsapp-link" class="whatsapp" target="_blank">📲 Pedir por WhatsApp</a>
     </section>
   </main>
   <footer>
@@ -187,17 +198,34 @@
       }
       renderCart();
     }
+    function removeFromCart(item) {
+      const index = cart.findIndex(x => x.name === item);
+      if (index !== -1) {
+        cart[index].qty--;
+        if (cart[index].qty <= 0) cart.splice(index, 1);
+      }
+      renderCart();
+    }
     function renderCart() {
       const list = document.getElementById('cart-list');
       const total = document.getElementById('cart-total');
+      const observations = document.getElementById('observations').value;
+      const whatsappLink = document.getElementById('whatsapp-link');
       list.innerHTML = '';
       let sum = 0;
+      let message = 'Hola! Quiero hacer un pedido:%0A';
       cart.forEach(({ name, price, qty }) => {
         sum += price * qty;
+        message += `${qty} x ${name} (€${(price * qty).toFixed(2)})%0A`;
         const li = document.createElement('li');
         li.textContent = `${qty} x ${name} (€${(price * qty).toFixed(2)})`;
         list.appendChild(li);
       });
+      if (observations) {
+        message += `%0A📝 Observaciones: ${observations}`;
+      }
+      message += `%0A💰 Total: €${sum.toFixed(2)}`;
+      whatsappLink.href = `https://wa.me/34944375281?text=${message}`;
       total.textContent = sum.toFixed(2);
     }
   </script>
