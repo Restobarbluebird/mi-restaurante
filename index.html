@@ -48,24 +48,14 @@
       flex: 1;
     }
     .item-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.control-group {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 5px;
-}
-
-.custom-select {
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .custom-select {
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 14px;
     }
     button {
       background-color: #FFD700;
@@ -150,74 +140,23 @@
 <div class="item"><span class="name">Queso de Mano y Jamón</span><div class="item-controls"><span class="price">9.00€</span><button onclick="removeItem('Cachapas', 'Queso de Mano y Jamón')">−</button><button onclick="addItem('Cachapas', 'Queso de Mano y Jamón', 9.00)">+</button></div></div>
 <div class="item"><span class="name">Queso de Mano y Carne Mechada</span><div class="item-controls"><span class="price">9.50€</span><button onclick="removeItem('Cachapas', 'Queso de Mano y Carne Mechada')">−</button><button onclick="addItem('Cachapas', 'Queso de Mano y Carne Mechada', 9.50)">+</button></div></div>
 <div class="item"><span class="name">Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><span class="price">10.50€</span><button onclick="removeItem('Cachapas', 'Pabellón')">−</button><button onclick="addItem('Cachapas', 'Pabellón', 10.50)">+</button></div></div>
-        
+
 <!-- HAMBURGUESAS -->
 <h3 class="section-title">Hamburguesas</h3>
 <p class="note">Todas van acompañadas de patatas fritas</p>
-
-<style>
-  .item-controls {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .custom-select {
-    padding: 4px 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 0.85rem;
-    background-color: #fff;
-    font-family: inherit;
-    min-width: 100px;
-    width: auto;
-  }
-
-  .item-controls .price {
-    font-weight: bold;
-    font-size: 1rem;
-  }
-
-  .item-controls button {
-    padding: 4px 10px;
-    border-radius: 6px;
-    border: none;
-    background-color: #007bff; /* Azul */
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
-  .item-controls button:hover {
-    background-color: #0056b3;
-  }
-
-  .burger-options {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: auto;
-  }
-</style>
-
- <span class="name">Hamburguesa Clásica</span>
+<div class="item">
+  <span class="name">Hamburguesa Clásica</span>
   <div class="item-controls">
     <span class="price">9.50€</span>
-
-    <!-- Contenedor para mantener select y botones alineados -->
-    <div class="control-group">
-      <select id="carneClasica" class="custom-select">
-        <option value="Croqueta">Croqueta</option>
-        <option value="Pollo">Pollo</option>
-        <option value="Mixta">Mixta</option>
-      </select>
-      <button onclick="removeItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value)">−</button>
-      <button onclick="addItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value, 9.50)">+</button>
-    </div>
+    <select id="carneClasica" class="custom-select">
+      <option value="Croqueta">Croqueta</option>
+      <option value="Pollo">Pollo</option>
+      <option value="Mixta">Mixta</option>
+    </select>
+    <button onclick="removeItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value)">−</button>
+    <button onclick="addItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value, 9.50)">+</button>
   </div>
-
+</div>
 <!-- RESTO SIN SELECTORES -->
 <div class="item">
   <span class="name">Crispy (Pollo empanizado, lechuga, tomate, queso, jamón, patatas paja, mayonesa, kétchup y salsa de la casa)</span>
