@@ -1,213 +1,150 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blue Bird Restobar</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #000;
-      color: #fff;
-    }
-    header {
-      text-align: center;
-      padding: 20px;
-    }
-    header img {
-      max-width: 200px;
-    }
-    h2 {
-      border-bottom: 2px solid #ffcc00;
-      padding-bottom: 5px;
-      margin-top: 30px;
-    }
-    .product {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      border-bottom: 1px solid #333;
-    }
-    .product-details {
-      flex: 1;
-    }
-    .product-controls {
-      display: flex;
-      align-items: center;
-    }
-    button {
-      background: #ffcc00;
-      border: none;
-      padding: 5px 10px;
-      margin: 0 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #cart-icon {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #ffcc00;
-      color: #000;
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #cart-popup {
-      display: none;
-      position: fixed;
-      top: 60px;
-      right: 20px;
-      background: #111;
-      border: 1px solid #ffcc00;
-      padding: 15px;
-      max-width: 300px;
-      z-index: 100;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="Logo.png.png" alt="Logo Blue Bird" />
-    <h1>Menú Blue Bird</h1>
-  </header>
+<section id="menu">
+    <h2>Menú</h2>
 
-  <div id="cart-icon" onclick="toggleCart()">🛒</div>
-  <div id="cart-popup"></div>
+    <div class="menu-section">
+        <h3>🥟 Empanadas</h3>
+        <ul>
+            <li><strong>Jamón y Queso</strong> - €3.00</li>
+            <li><strong>Pollo y Queso</strong> - €3.20</li>
+            <li><strong>Carne y Queso</strong> - €3.50</li>
+            <li><strong>Mixta</strong> - €4.00</li>
+            <li><strong>Pabellón</strong> - €6.00 <br><em>(Queso, carne desmechada, alubias negras y plátano frito)</em></li>
+        </ul>
+    </div>
 
-  <main id="menu"></main>
+    <div class="menu-section">
+        <h3>🫓 Arepas</h3>
+        <ul>
+            <li><strong>Jamón y Queso</strong> - €6.00</li>
+            <li><strong>Pollo y Queso</strong> - €7.00</li>
+            <li><strong>Carne y Queso</strong> - €8.00</li>
+            <li><strong>Pabellón</strong> - €9.50 <br><em>(Queso, carne desmechada, alubias negras y plátano frito)</em></li>
+        </ul>
+    </div>
 
-  <script>
-    const menuData = {
-      "Empanadas": [
-        { name: "Jamón y Queso", price: 3.00, ingredients: "" },
-        { name: "Pollo y Queso", price: 3.20, ingredients: "" },
-        { name: "Carne y Queso", price: 3.50, ingredients: "" },
-        { name: "Mixta", price: 4.00, ingredients: "" },
-        { name: "Pabellón", price: 6.00, ingredients: "Queso, Carne Desmechada, Alubias Negras y Plátano Frito" }
-      ],
-      "Arepas": [
-        { name: "Jamón y Queso", price: 6.00, ingredients: "" },
-        { name: "Pollo y Queso", price: 7.00, ingredients: "" },
-        { name: "Carne y Queso", price: 8.00, ingredients: "" },
-        { name: "Pabellón", price: 9.50, ingredients: "Queso, Carne Desmechada, Alubias Negras y Plátano Frito" }
-      ],
-      "Cachapas": [
-        { name: "Queso", price: 8.50, ingredients: "" },
-        { name: "Jamón y Queso", price: 9.50, ingredients: "" },
-        { name: "Pollo Desmechado", price: 11.00, ingredients: "" },
-        { name: "Carne Desmechada", price: 12.00, ingredients: "" },
-        { name: "Mixta", price: 13.00, ingredients: "Pollo, Carne y Queso" },
-        { name: "Ración Extra Cochino Frito", price: 3.50, ingredients: "" }
-      ],
-      "Hamburguesas": [
-        { name: "Clásica", price: 7.00, ingredients: "Carne o Pollo, Lechuga, Tomate, Cebolla, Mayonesa, Ketchup" },
-        { name: "Crispy", price: 8.50, ingredients: "Pollo Empanizado, Queso, Jamón, Patatas Paja, Salsas" },
-        { name: "BBQ", price: 10.00, ingredients: "Carne, Bacon, Chorizo, Queso, Salsas BBQ y de la casa" },
-        { name: "Doble", price: 12.00, ingredients: "Doble Carne, Queso, Bacon, Huevo, Patatas Paja" },
-        { name: "Blue Bird", price: 12.50, ingredients: "Carne, Lomo, Bacon, Queso, Cebolla Caramelizada" },
-        { name: "Tequeburguer", price: 15.00, ingredients: "Doble Carne, Tequeños, Bacon, Queso, Cebolla" }
-      ],
-      "Perros Calientes": [
-        { name: "Normal", price: 4.50, ingredients: "Salchicha Frankfurt, Patatas Paja, Salsas" },
-        { name: "Especial", price: 6.00, ingredients: "Frankfurt, Repollo, Zanahoria, Bacon, Queso, Salsas" },
-        { name: "Blue Bird", price: 7.50, ingredients: "Frankfurt, Pollo, Carne Desmechada, Bacon, Patatas Paja, Salsas" }
-      ],
-      "Bocadillos": [
-        { name: "Bacon y Queso", price: 5.50, ingredients: "" },
-        { name: "Bacon, Queso y Salchichas", price: 6.00, ingredients: "" },
-        { name: "Lomo con Queso y Pimientos", price: 7.30, ingredients: "" },
-        { name: "Pechuga de Pavo", price: 7.80, ingredients: "Queso, Bacon, Tomate, Lechuga y Cebolla" },
-        { name: "Filete de Ternera", price: 7.80, ingredients: "Con Queso y Pimientos" }
-      ],
-      "Burritos": [
-        { name: "Pollo", price: 5.50, ingredients: "Pollo, Vegetales, Queso, Salsa de la casa" },
-        { name: "Carne", price: 6.00, ingredients: "Carne, Vegetales, Queso, Salsa de la casa" },
-        { name: "Blue Bird", price: 6.50, ingredients: "Pollo, Carne, Bacon, Maíz, Vegetales, Patatas Paja, Queso, Salsa de la casa" }
-      ],
-      "Sándwiches": [
-        { name: "Mixto", price: 3.50, ingredients: "Jamón York y Queso" },
-        { name: "Picante", price: 4.50, ingredients: "Jamón York, Queso, Huevo, Mayonesa y Salsa" },
-        { name: "Vegetal", price: 5.50, ingredients: "Jamón York, Queso, Lechuga, Tomate, Huevo Frito, Espárragos y Mayonesa" },
-        { name: "Bonito", price: 6.00, ingredients: "Jamón York, Queso, Tomate, Huevo Frito, Bonito y Mayonesa" },
-        { name: "Blue Bird", price: 6.50, ingredients: "Jamón York, Queso, Pepinillo, Espárragos, Bacon, Huevo Frito, Mayonesa y Salsa de la casa" }
-      ],
-      "Postres": [
-        { name: "Postre del Día", price: 3.50, ingredients: "" },
-        { name: "Tarta de Maíz", price: 3.50, ingredients: "" },
-        { name: "Mouse de Arándanos", price: 3.00, ingredients: "" },
-        { name: "Postre de la Casa", price: 3.00, ingredients: "" },
-        { name: "Helado", price: 3.00, ingredients: "" }
-      ]
-    };
+    <div class="menu-section">
+        <h3>🌽 Cachapas</h3>
+        <ul>
+            <li><strong>Queso</strong> - €8.50</li>
+            <li><strong>Jamón y Queso</strong> - €9.50</li>
+            <li><strong>Pollo Desmechado</strong> - €11.00</li>
+            <li><strong>Carne Desmechada</strong> - €12.00</li>
+            <li><strong>Mixta</strong> - €13.00 <br><em>(Pollo, carne y queso)</em></li>
+            <li><strong>Ración Extra (Cochino Frito)</strong> - €3.50</li>
+        </ul>
+    </div>
 
-    const cart = {};
+    <div class="menu-section">
+        <h3>🍔 Hamburguesas</h3>
+        <p><em>Todas van acompañadas de patatas fritas. Elige tu pan: normal o brioche.</em></p>
+        <ul>
+            <li><strong>Clásica</strong> - €7.00 <br><em>(Carne o pollo, lechuga, tomate, cebolla, mayonesa y kétchup)</em></li>
+            <li><strong>Crispy</strong> - €8.50 <br><em>(Pollo empanizado, lechuga, tomate, queso, jamón, patatas paja, salsas)</em></li>
+            <li><strong>BBQ</strong> - €10.00 <br><em>(Carne, queso, chorizo, bacon, cebolla crujiente, salsas BBQ y de la casa)</em></li>
+            <li><strong>Doble</strong> - €12.00 <br><em>(Doble hamburguesa, huevo, bacon, doble queso, pepinillos, salsas)</em></li>
+            <li><strong>Blue Bird</strong> - €12.50 <br><em>(Carne, lomo de cerdo, huevo, bacon, jamón, queso, cebolla caramelizada, pepinillos, patatas paja)</em></li>
+            <li><strong>Tequeburguer</strong> - €15.00 <br><em>(Tequeños, doble carne, doble queso, jamón, bacon, cebolla caramelizada)</em></li>
+        </ul>
+    </div>
 
-    function renderMenu() {
-      const menu = document.getElementById('menu');
-      for (let category in menuData) {
-        const catTitle = document.createElement('h2');
-        catTitle.textContent = category;
-        menu.appendChild(catTitle);
+    <div class="menu-section">
+        <h3>🌭 Perros Calientes</h3>
+        <ul>
+            <li><strong>Normal</strong> - €4.50 <br><em>(Salchicha, cebolla, patatas paja, mayonesa, kétchup y mostaza)</em></li>
+            <li><strong>Especial</strong> - €6.00 <br><em>(Salchicha, repollo, zanahoria, tocineta, queso, maíz, salsas)</em></li>
+            <li><strong>Bluebird</strong> - €7.50 <br><em>(Salchicha, pollo y carne desmechada, cebolla caramelizada, queso, maíz, salsas)</em></li>
+        </ul>
+    </div>
 
-        menuData[category].forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'product';
-          div.innerHTML = `
-            <div class="product-details">
-              <strong>${item.name}</strong><br>
-              <small>${item.ingredients}</small><br>
-              <small>€${item.price.toFixed(2)}</small>
-            </div>
-            <div class="product-controls">
-              <button onclick="addToCart('${item.name}', ${item.price})">+</button>
-              <button onclick="removeFromCart('${item.name}')">-</button>
-            </div>
-          `;
-          menu.appendChild(div);
-        });
-      }
-    }
+    <div class="menu-section">
+        <h3>🥖 Bocadillos</h3>
+        <ul>
+            <li><strong>Bacon y Queso</strong> - €5.50</li>
+            <li><strong>Bacon, Queso y Salchichas</strong> - €6.00</li>
+            <li><strong>Lomo con Queso y Pimientos</strong> - €7.30</li>
+            <li><strong>Pechuga de Pavo</strong> - €7.80 <br><em>(Con queso, bacon, tomate, lechuga y cebolla)</em></li>
+            <li><strong>Filete de Ternera</strong> - €7.80 <br><em>(Con queso y pimientos)</em></li>
+        </ul>
+    </div>
 
-    function addToCart(name, price) {
-      if (!cart[name]) {
-        cart[name] = { quantity: 0, price };
-      }
-      cart[name].quantity++;
-      updateCartPopup();
-    }
+    <div class="menu-section">
+        <h3>🌯 Burritos</h3>
+        <ul>
+            <li><strong>Pollo</strong> - €5.50</li>
+            <li><strong>Carne</strong> - €6.00</li>
+            <li><strong>Bluebird</strong> - €6.50</li>
+        </ul>
+    </div>
 
-    function removeFromCart(name) {
-      if (cart[name]) {
-        cart[name].quantity--;
-        if (cart[name].quantity <= 0) {
-          delete cart[name];
-        }
-        updateCartPopup();
-      }
-    }
+    <div class="menu-section">
+        <h3>🥪 Sándwiches</h3>
+        <ul>
+            <li><strong>Mixto</strong> - €3.50</li>
+            <li><strong>Picante</strong> - €4.50</li>
+            <li><strong>Vegetal</strong> - €5.50</li>
+            <li><strong>Bonito</strong> - €6.00</li>
+            <li><strong>Blue Bird</strong> - €6.50</li>
+        </ul>
+    </div>
 
-    function updateCartPopup() {
-      const popup = document.getElementById('cart-popup');
-      popup.innerHTML = '<h3>Carrito</h3>';
-      let total = 0;
-      for (let item in cart) {
-        popup.innerHTML += `${item}: ${cart[item].quantity} x €${cart[item].price.toFixed(2)}<br>`;
-        total += cart[item].quantity * cart[item].price;
-      }
-      popup.innerHTML += `<strong>Total: €${total.toFixed(2)}</strong>`;
-    }
+    <div class="menu-section">
+        <h3>🍽 Platos Combinados</h3>
+        <ul>
+            <li><strong>Huevos fritos o salchichas, chorizo, bacon y patatas</strong> - €10.50</li>
+            <li><strong>Dos hamburguesas, huevo frito, bacon y patatas</strong> - €11.50</li>
+            <li><strong>Pechuga de pavo, ensalada, huevo frito y patatas</strong> - €12.00</li>
+            <li><strong>Pollo empanizado, ensalada, pimientos y patatas</strong> - €12.00</li>
+            <li><strong>Lomo, huevo frito, pimientos y patatas</strong> - €12.00</li>
+            <li><strong>Escoge la proteína + guarnición</strong> - €12.50</li>
+            <li><strong>Entrecot con patatas y pimientos</strong> - €13.50</li>
+            <li><strong>Parrillada Mixta</strong>: <br>
+                Para una persona - €15.00 <br>
+                Para dos personas - €25.00
+            </li>
+        </ul>
+    </div>
 
-    function toggleCart() {
-      const popup = document.getElementById('cart-popup');
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-    }
+    <div class="menu-section">
+        <h3>🍟 Raciones</h3>
+        <ul>
+            <li><strong>Patatas fritas con 3 salsas</strong><br>Pequeña - €4.50 / Grande - €8.00</li>
+            <li><strong>Salchipapas</strong> - €10.00</li>
+            <li><strong>Nachos</strong> - €10.00</li>
+            <li><strong>Dedos de mozzarella (8 u.)</strong> - €7.00</li>
+            <li><strong>Tequeños (6 u.)</strong> - €7.00</li>
+            <li><strong>Alitas a la BBQ</strong> - €7.00</li>
+            <li><strong>Alitas picantes empanadas</strong> - €7.00</li>
+            <li><strong>Jalapeños rellenos (6 u.)</strong> - €5.00</li>
+            <li><strong>Rabas (solo fines de semana y festivos)</strong> - €6.00</li>
+        </ul>
+    </div>
 
-    renderMenu();
-  </script>
-</body>
-</html>
+    <div class="menu-section">
+        <h3>🥗 Ensaladas</h3>
+        <ul>
+            <li><strong>Normal</strong> - €5.80</li>
+            <li><strong>Mixta</strong> - €6.80</li>
+            <li><strong>Blue Bird</strong> - €7.80</li>
+        </ul>
+    </div>
 
+    <div class="menu-section">
+        <h3>👶 Menú Infantil</h3>
+        <ul>
+            <li><strong>Quesadillas de jamón y queso</strong> - €4.80</li>
+            <li><strong>Patatas fritas con salchicha</strong> - €5.00</li>
+            <li><strong>Tenders de pollo (5 u.)</strong> - €5.80</li>
+        </ul>
+    </div>
+
+    <div class="menu-section">
+        <h3>🍰 Postres</h3>
+        <ul>
+            <li><strong>Postre del día</strong> - €3.50</li>
+            <li><strong>Tarta de maíz</strong> - €3.50</li>
+            <li><strong>Mousse de arándanos</strong> - €3.00</li>
+            <li><strong>Postre de la casa</strong> - €3.00</li>
+            <li><strong>Helado</strong> - €3.00</li>
+        </ul>
+    </div>
+</section>
