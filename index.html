@@ -1,98 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <body {
-  margin: 0;
-  padding: 0;
-  background-color: #000;
-  color: #fff;
-  font-family: Arial, sans-serif;
-}
-
-header {
-  text-align: center;
-  padding: 20px;
-  background-color: #111;
-}
-
-.logo {
-  width: 120px;
-  display: block;
-  margin: 0 auto 10px;
-}
-
-h1, h2, h3 {
-  color: #ffd700;
-}
-
-.slider {
-  text-align: center;
-  padding: 20px;
-  font-size: 1.2em;
-  background-color: #222;
-}
-
-.menu-category {
-  margin: 20px;
-  padding: 15px;
-  background-color: #111;
-  border-radius: 10px;
-}
-
-.menu-category ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.menu-category li {
-  padding: 5px 0;
-  border-bottom: 1px solid #333;
-}
-
-.menu-category small {
-  color: #aaa;
-}
-
-.whatsapp {
-  display: block;
-  width: max-content;
-  margin: 30px auto;
-  padding: 10px 20px;
-  background-color: #25D366;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #111;
-  color: #aaa;
-}
-
-.socials a {
-  color: #ffd700;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.top-btn {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #333;
-  color: #ffd700;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Restobar Blue Bird</title>
   <link rel="stylesheet" href="styles.css"/>
   <link rel="icon" href="logo.png"/>
+  <style>
+    body {
+      background-color: #000;
+      color: #FFD700;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+    .logo {
+      width: 100px;
+      height: auto;
+    }
+    h1 {
+      margin: 10px 0;
+      font-size: 2.5rem;
+    }
+    .slider {
+      text-align: center;
+      padding: 10px;
+      font-size: 1.2rem;
+      background-color: #111;
+    }
+    .slide {
+      margin: 5px 0;
+    }
+    #menu {
+      padding: 20px;
+    }
+    .menu-category {
+      margin-bottom: 30px;
+    }
+    .menu-category h3 {
+      font-size: 1.8rem;
+      color: #FFD700;
+      border-bottom: 1px solid #FFD700;
+      margin-bottom: 10px;
+    }
+    .menu-category ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu-category li {
+      margin-bottom: 5px;
+    }
+    .whatsapp {
+      display: block;
+      text-align: center;
+      background-color: green;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      margin: 20px auto;
+      width: fit-content;
+      border-radius: 5px;
+    }
+    footer {
+      background-color: #111;
+      padding: 20px;
+      text-align: center;
+    }
+    .socials a {
+      margin: 0 10px;
+      color: #FFD700;
+      text-decoration: none;
+    }
+    .top-btn {
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
+<body>
   <header>
     <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
     <h1>Restobar Blue Bird</h1>
@@ -107,167 +99,109 @@ footer {
   <main>
     <section id="menu">
       <h2>Menú</h2>
+      <pre style="white-space: pre-wrap; color: #FFD700">
+EMPANADAS
+* JAMÓN Y QUESO €3.00
+* POLLO Y QUESO €3.20
+* CARNE Y QUESO €3.50
+* MIXTA €4.00
+* PABELLÓN €6.00 (QUESO, CARNE DESMECHADA, ALUBIAS NEGRAS Y PLÁTANO FRITO)
 
+AREPAS
+* JAMÓN Y QUESO €6.00
+* POLLO Y QUESO €7.00
+* CARNE Y QUESO €8.00
+* PABELLÓN €9.50 (QUESO, CARNE DESMECHADA, ALUBIAS NEGRAS Y PLÁTANO FRITO)
 
-    <div class="menu-section">
-        <h3>🥟 Empanadas</h3>
-        <ul>
-            <li><strong>Jamón y Queso</strong> - €3.00</li>
-            <li><strong>Pollo y Queso</strong> - €3.20</li>
-            <li><strong>Carne y Queso</strong> - €3.50</li>
-            <li><strong>Mixta</strong> - €4.00</li>
-            <li><strong>Pabellón</strong> - €6.00 <br><em>(Queso, carne desmechada, alubias negras y plátano frito)</em></li>
-        </ul>
+CACHAPAS
+* QUESO €8.50
+* JAMÓN Y QUESO €9.50
+* POLLO DESMECHADO €11.00
+* CARNE DESMECHADA €12.00
+* MIXTA €13.00 (POLLO, CARNE Y QUESO)
+* RACIÓN EXTRA (COCHINO FRITO) €3.50
+
+HAMBURGUESAS (INCLUYEN PATATAS FRITAS, PAN NORMAL O BRIOCHE)
+* CLÁSICA €7.00
+* CRISPY €8.50
+* BBQ €10.00
+* DOBLE €12.00
+* BLUE BIRD €12.50
+* TEQUEBURGUER €15.00
+
+PERROS CALIENTES
+* NORMAL €4.50
+* ESPECIAL €6.00
+* BLUEBIRD €7.50
+
+BOCADILLOS
+* BACON Y QUESO €5.50
+* BACON, QUESO Y SALCHICHAS €6.00
+* LOMO CON QUESO Y PIMIENTOS €7.30
+* PECHUGA DE PAVO €7.80
+* FILETE DE TERNERA €7.80
+
+BURRITOS
+* POLLO €5.50
+* CARNE €6.00
+* BLUEBIRD €6.50
+
+SÁNDWICHES
+* MIXTO €3.50
+* PICANTE €4.50
+* VEGETAL €5.50
+* BONITO €6.00
+* BLUE BIRD €6.50
+
+PLATOS COMBINADOS
+* HUEVOS, CHORIZO, BACON, PATATAS €10.50
+* DOBLE HAMBURGUESA, HUEVO, BACON, PATATAS €11.50
+* PECHUGA DE PAVO, ENSALADA, HUEVO, PATATAS €12.00
+* POLLO EMPANIZADO, ENSALADA, PIMIENTOS, PATATAS €12.00
+* LOMO, HUEVO, PIMIENTOS, PATATAS €12.00
+* ESCOGE PROTEÍNA: POLLO, TERNERA O CERDO + GUARNICIÓN €12.50
+* ENTRE COT €13.50
+* PARRILLADA MIXTA: 1P €15.00 / 2P €25.00
+
+RACIONES
+* PATATAS FRITAS: P €4.50 / G €8.00
+* SALCHIPAPAS €10.00
+* NACHOS €10.00
+* DEDOS MOZZARELLA €7.00
+* TEQUEÑOS €7.00
+* ALITAS BBQ / PICANTES €7.00
+* JALAPEÑOS RELLENOS €5.00
+* RABAS €6.00
+
+ENSALADAS
+* NORMAL €5.80
+* MIXTA €6.80
+* BLUE BIRD €7.80
+
+MENÚ INFANTIL
+* QUESADILLAS JAMÓN Y QUESO €4.80
+* PATATAS FRITAS CON SALCHICHA €5.00
+* TENDERS DE POLLO €5.80
+
+POSTRES
+* POSTRE DEL DÍA €3.50
+* TARTA DE MAÍZ €3.50
+* MOUSSE DE ARÁNDANOS €3.00
+* POSTRE DE LA CASA €3.00
+* HELADO €3.00
+      </pre>
+      <a href="https://wa.me/34944375281" class="whatsapp" target="_blank">📲 Pedir por WhatsApp</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>📍 Dirección: Calle Ejemplo 123, Tu Ciudad</p>
+    <p>🕒 Horario: Lun-Dom 12:00 – 23:00</p>
+    <div class="socials">
+      <a href="#" target="_blank">📸 Instagram</a>
+      <a href="#" target="_blank">📘 Facebook</a>
     </div>
-
-    <div class="menu-section">
-        <h3>🫓 Arepas</h3>
-        <ul>
-            <li><strong>Jamón y Queso</strong> - €6.00</li>
-            <li><strong>Pollo y Queso</strong> - €7.00</li>
-            <li><strong>Carne y Queso</strong> - €8.00</li>
-            <li><strong>Pabellón</strong> - €9.50 <br><em>(Queso, carne desmechada, alubias negras y plátano frito)</em></li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🌽 Cachapas</h3>
-        <ul>
-            <li><strong>Queso</strong> - €8.50</li>
-            <li><strong>Jamón y Queso</strong> - €9.50</li>
-            <li><strong>Pollo Desmechado</strong> - €11.00</li>
-            <li><strong>Carne Desmechada</strong> - €12.00</li>
-            <li><strong>Mixta</strong> - €13.00 <br><em>(Pollo, carne y queso)</em></li>
-            <li><strong>Ración Extra (Cochino Frito)</strong> - €3.50</li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🍔 Hamburguesas</h3>
-        <p><em>Todas van acompañadas de patatas fritas. Elige tu pan: normal o brioche.</em></p>
-        <ul>
-            <li><strong>Clásica</strong> - €7.00 <br><em>(Carne o pollo, lechuga, tomate, cebolla, mayonesa y kétchup)</em></li>
-            <li><strong>Crispy</strong> - €8.50 <br><em>(Pollo empanizado, lechuga, tomate, queso, jamón, patatas paja, salsas)</em></li>
-            <li><strong>BBQ</strong> - €10.00 <br><em>(Carne, queso, chorizo, bacon, cebolla crujiente, salsas BBQ y de la casa)</em></li>
-            <li><strong>Doble</strong> - €12.00 <br><em>(Doble hamburguesa, huevo, bacon, doble queso, pepinillos, salsas)</em></li>
-            <li><strong>Blue Bird</strong> - €12.50 <br><em>(Carne, lomo de cerdo, huevo, bacon, jamón, queso, cebolla caramelizada, pepinillos, patatas paja)</em></li>
-            <li><strong>Tequeburguer</strong> - €15.00 <br><em>(Tequeños, doble carne, doble queso, jamón, bacon, cebolla caramelizada)</em></li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🌭 Perros Calientes</h3>
-        <ul>
-            <li><strong>Normal</strong> - €4.50 <br><em>(Salchicha, cebolla, patatas paja, mayonesa, kétchup y mostaza)</em></li>
-            <li><strong>Especial</strong> - €6.00 <br><em>(Salchicha, repollo, zanahoria, tocineta, queso, maíz, salsas)</em></li>
-            <li><strong>Bluebird</strong> - €7.50 <br><em>(Salchicha, pollo y carne desmechada, cebolla caramelizada, queso, maíz, salsas)</em></li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🥖 Bocadillos</h3>
-        <ul>
-            <li><strong>Bacon y Queso</strong> - €5.50</li>
-            <li><strong>Bacon, Queso y Salchichas</strong> - €6.00</li>
-            <li><strong>Lomo con Queso y Pimientos</strong> - €7.30</li>
-            <li><strong>Pechuga de Pavo</strong> - €7.80 <br><em>(Con queso, bacon, tomate, lechuga y cebolla)</em></li>
-            <li><strong>Filete de Ternera</strong> - €7.80 <br><em>(Con queso y pimientos)</em></li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🌯 Burritos</h3>
-        <ul>
-            <li><strong>Pollo</strong> - €5.50</li>
-            <li><strong>Carne</strong> - €6.00</li>
-            <li><strong>Bluebird</strong> - €6.50</li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🥪 Sándwiches</h3>
-        <ul>
-            <li><strong>Mixto</strong> - €3.50</li>
-            <li><strong>Picante</strong> - €4.50</li>
-            <li><strong>Vegetal</strong> - €5.50</li>
-            <li><strong>Bonito</strong> - €6.00</li>
-            <li><strong>Blue Bird</strong> - €6.50</li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🍽 Platos Combinados</h3>
-        <ul>
-            <li><strong>Huevos fritos o salchichas, chorizo, bacon y patatas</strong> - €10.50</li>
-            <li><strong>Dos hamburguesas, huevo frito, bacon y patatas</strong> - €11.50</li>
-            <li><strong>Pechuga de pavo, ensalada, huevo frito y patatas</strong> - €12.00</li>
-            <li><strong>Pollo empanizado, ensalada, pimientos y patatas</strong> - €12.00</li>
-            <li><strong>Lomo, huevo frito, pimientos y patatas</strong> - €12.00</li>
-            <li><strong>Escoge la proteína + guarnición</strong> - €12.50</li>
-            <li><strong>Entrecot con patatas y pimientos</strong> - €13.50</li>
-            <li><strong>Parrillada Mixta</strong>: <br>
-                Para una persona - €15.00 <br>
-                Para dos personas - €25.00
-            </li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🍟 Raciones</h3>
-        <ul>
-            <li><strong>Patatas fritas con 3 salsas</strong><br>Pequeña - €4.50 / Grande - €8.00</li>
-            <li><strong>Salchipapas</strong> - €10.00</li>
-            <li><strong>Nachos</strong> - €10.00</li>
-            <li><strong>Dedos de mozzarella (8 u.)</strong> - €7.00</li>
-            <li><strong>Tequeños (6 u.)</strong> - €7.00</li>
-            <li><strong>Alitas a la BBQ</strong> - €7.00</li>
-            <li><strong>Alitas picantes empanadas</strong> - €7.00</li>
-            <li><strong>Jalapeños rellenos (6 u.)</strong> - €5.00</li>
-            <li><strong>Rabas (solo fines de semana y festivos)</strong> - €6.00</li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🥗 Ensaladas</h3>
-        <ul>
-            <li><strong>Normal</strong> - €5.80</li>
-            <li><strong>Mixta</strong> - €6.80</li>
-            <li><strong>Blue Bird</strong> - €7.80</li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>👶 Menú Infantil</h3>
-        <ul>
-            <li><strong>Quesadillas de jamón y queso</strong> - €4.80</li>
-            <li><strong>Patatas fritas con salchicha</strong> - €5.00</li>
-            <li><strong>Tenders de pollo (5 u.)</strong> - €5.80</li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <h3>🍰 Postres</h3>
-        <ul>
-            <li><strong>Postre del día</strong> - €3.50</li>
-            <li><strong>Tarta de maíz</strong> - €3.50</li>
-            <li><strong>Mousse de arándanos</strong> - €3.00</li>
-            <li><strong>Postre de la casa</strong> - €3.00</li>
-            <li><strong>Helado</strong> - €3.00</li>
-        </ul>
-    </div>
-</section>
-
-        <a href="https://wa.me/34944375281" class="whatsapp" target="_blank">📲 Pedir por WhatsApp</a>
-    </main>
-
-    <footer>
-        <p>📍 Dirección: Calle Ejemplo 123, Tu Ciudad</p>
-        <p>🕒 Horario: Lun-Dom 12:00 – 23:00</p>
-        <div class="socials">
-            <a href="#" target="_blank">📸 Instagram</a>
-            <a href="#" target="_blank">📘 Facebook</a>
-        </div>
-        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class="top-btn">⬆ Volver arriba</button>
-    </footer>
+    <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class="top-btn">⬆ Volver arriba</button>
+  </footer>
 </body>
 </html>
