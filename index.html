@@ -141,7 +141,7 @@
         <div class="item"><span class="name">Queso de Mano y Carne Mechada</span><div class="item-controls"><span class="price">9.50€</span><button onclick="addItem('Cachapas', 'Queso de Mano y Carne Mechada', 9.50)">+</button><button onclick="removeItem('Cachapas', 'Queso de Mano y Carne Mechada')">−</button></div></div>
         <div class="item"><span class="name">Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><span class="price">10.50€</span><button onclick="addItem('Cachapas', 'Pabellón', 10.50)">+</button><button onclick="removeItem('Cachapas', 'Pabellón')">−</button></div></div>
 
-  <!-- HAMBURGUESAS -->
+ <!-- HAMBURGUESAS -->
 <h3 class="section-title">Hamburguesas</h3>
 <p class="note">Todas van acompañadas de patatas fritas</p>
 
@@ -149,30 +149,28 @@
   .item-controls {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
   }
 
   .custom-select {
-    padding: 6px 10px;
-    border-radius: 8px;
+    padding: 4px 8px;
+    border-radius: 6px;
     border: 1px solid #ccc;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     background-color: #fff;
     font-family: inherit;
-    width: 48%;
-    min-width: 140px;
+    min-width: 100px;
+    width: auto;
   }
 
   .item-controls .price {
     font-weight: bold;
     font-size: 1rem;
-    margin-right: auto;
   }
 
   .item-controls button {
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 6px;
     border: none;
     background-color: #007bff;
@@ -185,24 +183,33 @@
   .item-controls button:hover {
     background-color: #0056b3;
   }
+
+  .burger-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: auto;
+  }
 </style>
 
 <div class="item">
   <span class="name">Clásica (Lechuga, tomate, cebolla, mayonesa y kétchup)</span>
   <div class="item-controls">
-    <select class="custom-select" id="tipoClasica" required>
-      <option value="">Carne o Pollo</option>
-      <option value="Carne">Carne</option>
-      <option value="Pollo">Pollo</option>
-    </select>
-    <select class="custom-select" id="panClasica" required>
-      <option value="">Pan</option>
-      <option value="Normal">Normal</option>
-      <option value="Brioche">Brioche</option>
-    </select>
+    <div class="burger-options">
+      <select class="custom-select" id="tipoClasica" required>
+        <option value="">Carne o Pollo</option>
+        <option value="Carne">Carne</option>
+        <option value="Pollo">Pollo</option>
+      </select>
+      <select class="custom-select" id="panClasica" required>
+        <option value="">Pan</option>
+        <option value="Normal">Normal</option>
+        <option value="Brioche">Brioche</option>
+      </select>
+    </div>
     <span class="price">7.00€</span>
-    <button onclick="addBurgerWithOptions('Clásica', 7.00, 'tipoClasica', 'panClasica')">+</button>
     <button onclick="removeItem('Hamburguesas', 'Clásica')">−</button>
+    <button onclick="addBurgerWithOptions('Clásica', 7.00, 'tipoClasica', 'panClasica')">+</button>
   </div>
 </div>
 
@@ -215,8 +222,8 @@
       <option value="Brioche">Brioche</option>
     </select>
     <span class="price">8.50€</span>
-    <button onclick="addBurgerWithOptions('Crispy', 8.50, null, 'panCrispy')">+</button>
     <button onclick="removeItem('Hamburguesas', 'Crispy')">−</button>
+    <button onclick="addBurgerWithOptions('Crispy', 8.50, null, 'panCrispy')">+</button>
   </div>
 </div>
 
@@ -229,8 +236,8 @@
       <option value="Brioche">Brioche</option>
     </select>
     <span class="price">10.00€</span>
-    <button onclick="addBurgerWithOptions('BBQ', 10.00, null, 'panBBQ')">+</button>
     <button onclick="removeItem('Hamburguesas', 'BBQ')">−</button>
+    <button onclick="addBurgerWithOptions('BBQ', 10.00, null, 'panBBQ')">+</button>
   </div>
 </div>
 
@@ -243,8 +250,8 @@
       <option value="Brioche">Brioche</option>
     </select>
     <span class="price">12.00€</span>
-    <button onclick="addBurgerWithOptions('Doble', 12.00, null, 'panDoble')">+</button>
     <button onclick="removeItem('Hamburguesas', 'Doble')">−</button>
+    <button onclick="addBurgerWithOptions('Doble', 12.00, null, 'panDoble')">+</button>
   </div>
 </div>
 
@@ -257,8 +264,8 @@
       <option value="Brioche">Brioche</option>
     </select>
     <span class="price">12.50€</span>
-    <button onclick="addBurgerWithOptions('Blue Bird', 12.50, null, 'panBlueBird')">+</button>
     <button onclick="removeItem('Hamburguesas', 'Blue Bird')">−</button>
+    <button onclick="addBurgerWithOptions('Blue Bird', 12.50, null, 'panBlueBird')">+</button>
   </div>
 </div>
 
@@ -271,10 +278,11 @@
       <option value="Brioche">Brioche</option>
     </select>
     <span class="price">15.00€</span>
-    <button onclick="addBurgerWithOptions('Tequeburguer', 15.00, null, 'panTequeburguer')">+</button>
     <button onclick="removeItem('Hamburguesas', 'Tequeburguer')">−</button>
+    <button onclick="addBurgerWithOptions('Tequeburguer', 15.00, null, 'panTequeburguer')">+</button>
   </div>
 </div>
+
         
         <div class="cart" id="cart">
           <h3>🛒 Carrito de compras</h3>
