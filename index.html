@@ -153,7 +153,7 @@
 <body>
   <div class="cart-floating" id="cart-count" onclick="scrollToCart()">0</div>
   <header>
-    <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
+    <img src="Logo.png.png" alt="Logo Restobar Blue Bird" class="logo"/>
     <h1>Restobar Blue Bird</h1>
   </header>
   <section class="slider">
@@ -258,8 +258,8 @@
       message += `Dirección: ${address}\n`;
       message += `Método de pago: ${payment}\n`;
       message += `Costo de domicilio: 3€`;
-      const phoneNumber = '34XXXXXXXXX';
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      const phoneNumber = '+34944375281';
+      const url = `https://wa.me/${+34944375281}?text=${encodeURIComponent(message)}`;
       document.getElementById('whatsapp-link').href = url;
     }
   </script>
