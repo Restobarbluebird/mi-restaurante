@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -83,6 +84,24 @@
       cursor: pointer;
       margin: 0 5px;
     }
+    .cart-floating {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #FFD700;
+      color: #000;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      z-index: 999;
+      box-shadow: 0 0 10px rgba(255,215,0,0.5);
+      cursor: pointer;
+    }
     .cart {
       margin-top: 30px;
       padding: 20px;
@@ -110,24 +129,6 @@
       background-color: #000;
       color: #fff;
     }
-    .cart-floating {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #FFD700;
-      color: #000;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1.1rem;
-      z-index: 999;
-      box-shadow: 0 0 10px rgba(255,215,0,0.5);
-      cursor: pointer;
-    }
     .whatsapp {
       display: block;
       text-align: center;
@@ -147,28 +148,12 @@
       text-align: center;
       font-size: 0.95rem;
     }
-    .socials a {
-      margin: 0 12px;
-      color: #FFD700;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .top-btn {
-      margin-top: 20px;
-      padding: 12px 18px;
-      border: none;
-      border-radius: 5px;
-      background-color: #FFD700;
-      color: #000;
-      cursor: pointer;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
   <div class="cart-floating" id="cart-count" onclick="scrollToCart()">0</div>
   <header>
-    <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
+    <img src="Logo.png.png" alt="Logo Restobar Blue Bird" class="logo"/>
     <h1>Restobar Blue Bird</h1>
   </header>
   <section class="slider">
@@ -180,23 +165,103 @@
     <section id="menu">
       <h2>Menú</h2>
       <p style="color: #FFD700; font-weight: bold;">🚚 Domicilio solo para Baracaldo por favor.</p>
-      <!-- Aquí irán los productos y carrito -->
-      <p id="form-warning" style="color: red; display:none;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
+      <h3 class="section-title">Empanadas</h3>
+      <div class="item"><span>Jamon y Queso</span><button onclick="addItem('Empanadas', 'Jamon y Queso', 2.5)">+</button><button onclick="removeItem('Empanadas', 'Jamon y Queso')">−</button><span class="price">2.5€</span></div>
+      <div class="item"><span>Carne Mechada</span><button onclick="addItem('Empanadas', 'Carne Mechada', 2.5)">+</button><button onclick="removeItem('Empanadas', 'Carne Mechada')">−</button><span class="price">2.5€</span></div>
+      <div class="item"><span>Pollo</span><button onclick="addItem('Empanadas', 'Pollo', 2.5)">+</button><button onclick="removeItem('Empanadas', 'Pollo')">−</button><span class="price">2.5€</span></div>
+
+      <div class="cart" id="cart">
+        <h3>Tu pedido</h3>
+        <div class="cart-list" id="cart-list"></div>
+        <textarea class="cart-observations" id="observations" placeholder="Observaciones (sin cebolla, etc)"></textarea>
+        <input class="cart-input" id="name" placeholder="Nombre y Apellido" required />
+        <input class="cart-input" id="phone" placeholder="Teléfono" required />
+        <input class="cart-input" id="address" placeholder="Dirección" required />
+        <select class="cart-select" id="payment">
+          <option value="Efectivo">Efectivo</option>
+          <option value="Tarjeta">Tarjeta</option>
+          <option value="Bizum">Bizum</option>
+        </select>
+        <p style="margin-top: 10px; font-weight: bold; color: #FFD700;">Costo de domicilio: 3€</p>
+        <p id="total" style="margin-top: 5px; font-weight: bold; color: white;">Total: 0€</p>
+        <a href="#" class="whatsapp" id="whatsapp-link" onclick="sendOrder(event)">Realizar pedido por WhatsApp</a>
+        <p id="form-warning" style="color: red; display:none;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
+      </div>
     </section>
   </main>
   <footer>
     <p>&copy; 2025 Restobar Blue Bird</p>
   </footer>
   <script>
-    document.getElementById('whatsapp-link')?.addEventListener('click', function(e) {
-      const name = document.getElementById('name')?.value.trim();
-      const phone = document.getElementById('phone')?.value.trim();
-      const address = document.getElementById('address')?.value.trim();
-      if (!name || !phone || !address) {
-        e.preventDefault();
-        document.getElementById('form-warning').style.display = 'block';
+    const cart = {};
+    function addItem(category, name, price) {
+      const key = `${category} - ${name}`;
+      if (!cart[key]) cart[key] = { category, name, price, qty: 0 };
+      cart[key].qty++;
+      updateCart();
+    }
+    function removeItem(category, name) {
+      const key = `${category} - ${name}`;
+      if (cart[key]) {
+        cart[key].qty--;
+        if (cart[key].qty <= 0) delete cart[key];
+        updateCart();
       }
-    });
+    }
+    function updateCart() {
+      const cartList = document.getElementById('cart-list');
+      const cartCount = document.getElementById('cart-count');
+      cartList.innerHTML = '';
+      let total = 3; // delivery fee
+      let count = 0;
+      const grouped = {};
+      for (const key in cart) {
+        const { category, name, qty, price } = cart[key];
+        if (!grouped[category]) grouped[category] = [];
+        grouped[category].push(`${qty} x ${name}`);
+        total += qty * price;
+        count += qty;
+      }
+      for (const cat in grouped) {
+        cartList.innerHTML += `<strong>${cat}:</strong><br>${grouped[cat].join('<br>')}<br><br>`;
+      }
+      document.getElementById('total').textContent = `Total: ${total.toFixed(2)}€`;
+      cartCount.textContent = count;
+    }
+    function scrollToCart() {
+      document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
+    }
+    function sendOrder(e) {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const payment = document.getElementById('payment').value;
+      const observations = document.getElementById('observations').value.trim();
+      if (!name || !phone || !address) {
+        document.getElementById('form-warning').style.display = 'block';
+        e.preventDefault();
+        return;
+      }
+      let message = `Hola. Quiero hacer un pedido:%0A%0A`;
+      const grouped = {};
+      for (const key in cart) {
+        const { category, name, qty } = cart[key];
+        if (!grouped[category]) grouped[category] = [];
+        grouped[category].push(`${qty} x ${name}`);
+      }
+      for (const cat in grouped) {
+        message += `${cat}:%0A${grouped[cat].join('%0A')}%0A%0A`;
+      }
+      if (observations) message += `Observaciones: ${observations}%0A`;
+      message += `Nombre: ${name}%0A`; 
+      message += `Teléfono: ${phone}%0A`;
+      message += `Dirección: ${address}%0A`;
+      message += `Método de pago: ${payment}%0A`;
+      message += `Costo de domicilio: 3€`;
+      const phoneNumber = '34XXXXXXXXX'; // <-- Reemplaza con tu número
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      document.getElementById('whatsapp-link').href = url;
+    }
   </script>
 </body>
 </html>
