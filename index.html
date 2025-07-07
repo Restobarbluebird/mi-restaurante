@@ -536,16 +536,31 @@
   </script>
 </body>
   <script>
-  function addBurgerWithOptions(name, price, tipoId, panId) {
-    const tipo = tipoId ? (document.getElementById(tipoId)?.value || '') : '';
+  function addItemWithOption(name, selectId, priceMap) {
+    const select = document.getElementById(selectId);
+    const selectedOption = select.value;
 
-    if (tipoId && !tipo) {
-      alert("Por favor selecciona si es de carne o de pollo");
+    if (!selectedOption) {
+      alert("Por favor selecciona un tamaño");
       return;
     }
 
-    const fullName = tipo ? `${name} (${tipo})` : name;
-    addItem("Hamburguesas", fullName, price);
+    const price = priceMap[selectedOption];
+    const fullName = `${name} (${selectedOption})`;
+    addItem("Parrilladas", fullName, price);
+  }
+
+  function removeItemWithOption(name, selectId) {
+    const select = document.getElementById(selectId);
+    const selectedOption = select.value;
+
+    if (!selectedOption) {
+      alert("Por favor selecciona un tamaño");
+      return;
+    }
+
+    const fullName = `${name} (${selectedOption})`;
+    removeItem("Parrilladas", fullName);
   }
 </script>
 </body>
