@@ -37,28 +37,25 @@
     }
     .item {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      justify-content: space-between;
+      align-items: center;
       background-color: #222;
       padding: 10px;
       border-radius: 5px;
       margin: 10px 0;
     }
-    .item span {
-      font-size: 1rem;
+    .item span.name {
+      flex: 1;
     }
     .item-controls {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 5px;
     }
     .item-controls span.price {
       color: #FFD700;
       font-weight: bold;
-      margin-right: 10px;
-    }
-    .item-controls button {
-      margin-left: 5px;
+      margin-right: 5px;
     }
     button {
       background-color: #FFD700;
@@ -124,18 +121,18 @@
 
         <!-- EMPANADAS -->
         <h3 class="section-title">Empanadas</h3>
-        <div class="item"><span>Jamón y Queso</span><div class="item-controls"><span class="price">3.00€</span><button onclick="addItem('Empanadas', 'Jamón y Queso', 3.00)">+</button><button onclick="removeItem('Empanadas', 'Jamón y Queso')">−</button></div></div>
-        <div class="item"><span>Pollo y Queso</span><div class="item-controls"><span class="price">3.20€</span><button onclick="addItem('Empanadas', 'Pollo y Queso', 3.20)">+</button><button onclick="removeItem('Empanadas', 'Pollo y Queso')">−</button></div></div>
-        <div class="item"><span>Carne y Queso</span><div class="item-controls"><span class="price">3.50€</span><button onclick="addItem('Empanadas', 'Carne y Queso', 3.50)">+</button><button onclick="removeItem('Empanadas', 'Carne y Queso')">−</button></div></div>
-        <div class="item"><span>Mixta</span><div class="item-controls"><span class="price">4.00€</span><button onclick="addItem('Empanadas', 'Mixta', 4.00)">+</button><button onclick="removeItem('Empanadas', 'Mixta')">−</button></div></div>
-        <div class="item"><span>Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><span class="price">6.00€</span><button onclick="addItem('Empanadas', 'Pabellón', 6.00)">+</button><button onclick="removeItem('Empanadas', 'Pabellón')">−</button></div></div>
+        <div class="item"><span class="name">Jamón y Queso</span><div class="item-controls"><span class="price">3.00€</span><button onclick="addItem('Empanadas', 'Jamón y Queso', 3.00)">+</button><button onclick="removeItem('Empanadas', 'Jamón y Queso')">−</button></div></div>
+        <div class="item"><span class="name">Pollo y Queso</span><div class="item-controls"><span class="price">3.20€</span><button onclick="addItem('Empanadas', 'Pollo y Queso', 3.20)">+</button><button onclick="removeItem('Empanadas', 'Pollo y Queso')">−</button></div></div>
+        <div class="item"><span class="name">Carne y Queso</span><div class="item-controls"><span class="price">3.50€</span><button onclick="addItem('Empanadas', 'Carne y Queso', 3.50)">+</button><button onclick="removeItem('Empanadas', 'Carne y Queso')">−</button></div></div>
+        <div class="item"><span class="name">Mixta</span><div class="item-controls"><span class="price">4.00€</span><button onclick="addItem('Empanadas', 'Mixta', 4.00)">+</button><button onclick="removeItem('Empanadas', 'Mixta')">−</button></div></div>
+        <div class="item"><span class="name">Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><span class="price">6.00€</span><button onclick="addItem('Empanadas', 'Pabellón', 6.00)">+</button><button onclick="removeItem('Empanadas', 'Pabellón')">−</button></div></div>
 
         <!-- AREPAS -->
         <h3 class="section-title">Arepas</h3>
-        <div class="item"><span>Jamón y Queso</span><div class="item-controls"><span class="price">6.00€</span><button onclick="addItem('Arepas', 'Jamón y Queso', 6.00)">+</button><button onclick="removeItem('Arepas', 'Jamón y Queso')">−</button></div></div>
-        <div class="item"><span>Pollo y Queso</span><div class="item-controls"><span class="price">7.00€</span><button onclick="addItem('Arepas', 'Pollo y Queso', 7.00)">+</button><button onclick="removeItem('Arepas', 'Pollo y Queso')">−</button></div></div>
-        <div class="item"><span>Carne y Queso</span><div class="item-controls"><span class="price">8.00€</span><button onclick="addItem('Arepas', 'Carne y Queso', 8.00)">+</button><button onclick="removeItem('Arepas', 'Carne y Queso')">−</button></div></div>
-        <div class="item"><span>Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><span class="price">9.50€</span><button onclick="addItem('Arepas', 'Pabellón', 9.50)">+</button><button onclick="removeItem('Arepas', 'Pabellón')">−</button></div></div>
+        <div class="item"><span class="name">Jamón y Queso</span><div class="item-controls"><span class="price">6.00€</span><button onclick="addItem('Arepas', 'Jamón y Queso', 6.00)">+</button><button onclick="removeItem('Arepas', 'Jamón y Queso')">−</button></div></div>
+        <div class="item"><span class="name">Pollo y Queso</span><div class="item-controls"><span class="price">7.00€</span><button onclick="addItem('Arepas', 'Pollo y Queso', 7.00)">+</button><button onclick="removeItem('Arepas', 'Pollo y Queso')">−</button></div></div>
+        <div class="item"><span class="name">Carne y Queso</span><div class="item-controls"><span class="price">8.00€</span><button onclick="addItem('Arepas', 'Carne y Queso', 8.00)">+</button><button onclick="removeItem('Arepas', 'Carne y Queso')">−</button></div></div>
+        <div class="item"><span class="name">Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><span class="price">9.50€</span><button onclick="addItem('Arepas', 'Pabellón', 9.50)">+</button><button onclick="removeItem('Arepas', 'Pabellón')">−</button></div></div>
 
         <div class="cart" id="cart">
           <h3>🛒 Carrito de compras</h3>
@@ -162,7 +159,80 @@
     </footer>
   </div>
   <script>
-    // Aquí irá el código JavaScript completo para manejo de carrito, total, WhatsApp, etc.
+    let cart = [];
+
+    function addItem(category, name, price) {
+      const existingItem = cart.find(item => item.name === name && item.category === category);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ category, name, price, quantity: 1 });
+      }
+      updateCart();
+    }
+
+    function removeItem(category, name) {
+      const index = cart.findIndex(item => item.name === name && item.category === category);
+      if (index !== -1) {
+        if (cart[index].quantity > 1) {
+          cart[index].quantity--;
+        } else {
+          cart.splice(index, 1);
+        }
+      }
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById('cart-list');
+      const totalDisplay = document.getElementById('total');
+      const cartCount = document.getElementById('cart-count');
+      cartList.innerHTML = '';
+      let total = 0;
+      let count = 0;
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+        const div = document.createElement('div');
+        div.textContent = `${item.quantity} x ${item.name} (${item.category}) - ${(item.price * item.quantity).toFixed(2)}€`;
+        cartList.appendChild(div);
+      });
+      totalDisplay.textContent = `Total: ${total.toFixed(2)}€`;
+      cartCount.textContent = count;
+    }
+
+    function scrollToCart() {
+      document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function sendOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const payment = document.getElementById('payment').value;
+      const observations = document.getElementById('observations').value;
+
+      if (!name || !phone || !address) {
+        document.getElementById('form-warning').style.display = 'block';
+        return;
+      } else {
+        document.getElementById('form-warning').style.display = 'none';
+      }
+
+      let message = `*Pedido para Restobar Blue Bird*\n\n`;
+      cart.forEach(item => {
+        message += `• ${item.quantity} x ${item.name} (${item.category}) - ${(item.price * item.quantity).toFixed(2)}€\n`;
+      });
+      message += `\n*Total:* ${parseFloat(document.getElementById('total').textContent.replace('Total: ', '')).toFixed(2)}€`;
+      message += `\n\n*Nombre:* ${name}\n*Teléfono:* ${phone}\n*Dirección:* ${address}\n*Forma de pago:* ${payment}`;
+      if (observations.trim()) {
+        message += `\n*Observaciones:* ${observations}`;
+      }
+
+      const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(whatsappURL, '_blank');
+    }
   </script>
 </body>
 </html>
