@@ -50,19 +50,58 @@
       display: inline-block;
       text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.5);
     }
-    pre {
-      white-space: pre-wrap;
-      background-color: #111;
-      padding: 20px;
-      border-radius: 10px;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #fff;
-      text-align: left;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-    }
-    pre strong {
+    .section-title {
       color: #FFD700;
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      text-shadow: 1px 1px 3px rgba(255, 215, 0, 0.5);
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      padding: 10px 20px;
+      margin: 10px auto;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+    }
+    .item span {
+      font-size: 1.1rem;
+      flex: 1;
+      text-align: left;
+    }
+    .item .price {
+      margin-left: 10px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .item button {
+      background-color: #FFD700;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    .cart {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #111;
+      border-radius: 10px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+    .cart h3 {
+      color: #FFD700;
+      margin-bottom: 10px;
+    }
+    .cart-list {
+      text-align: left;
     }
     .whatsapp {
       display: block;
@@ -99,130 +138,35 @@
       cursor: pointer;
       font-weight: bold;
     }
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      .logo {
-        width: 80px;
-      }
-      #menu h2 {
-        font-size: 1.8rem;
-      }
-      pre {
-        font-size: 0.95rem;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
-    <img src="Logo.png.png" alt="Logo Restobar Blue Bird" class="logo"/>
+    <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
     <h1>Restobar Blue Bird</h1>
   </header>
-
   <section class="slider">
     <div class="slide">Bienvenido a Restobar Blue Bird</div>
     <div class="slide">Delicias venezolanas con amor</div>
     <div class="slide">Haz tu pedido por WhatsApp</div>
   </section>
-
   <main>
     <section id="menu">
       <h2>Menú</h2>
-      <pre><strong>EMPANADAS</strong>
-* JAMÓN Y QUESO €3.00
-* POLLO Y QUESO €3.20
-* CARNE Y QUESO €3.50
-* MIXTA €4.00
-* PABELLÓN €6.00 (QUESO, CARNE DESMECHADA, ALUBIAS NEGRAS Y PLÁTANO FRITO)
-
-<strong>AREPAS</strong>
-* JAMÓN Y QUESO €6.00
-* POLLO Y QUESO €7.00
-* CARNE Y QUESO €8.00
-* PABELLÓN €9.50 (QUESO, CARNE DESMECHADA, ALUBIAS NEGRAS Y PLÁTANO FRITO)
-
-<strong>CACHAPAS</strong>
-* QUESO €8.50
-* JAMÓN Y QUESO €9.50
-* POLLO DESMECHADO €11.00
-* CARNE DESMECHADA €12.00
-* MIXTA €13.00 (POLLO, CARNE Y QUESO)
-* RACIÓN EXTRA (COCHINO FRITO) €3.50
-
-<strong>HAMBURGUESAS</strong> (INCLUYEN PATATAS FRITAS, PAN NORMAL O BRIOCHE)
-* CLÁSICA €7.00
-* CRISPY €8.50
-* BBQ €10.00
-* DOBLE €12.00
-* BLUE BIRD €12.50
-* TEQUEBURGUER €15.00
-
-<strong>PERROS CALIENTES</strong>
-* NORMAL €4.50
-* ESPECIAL €6.00
-* BLUEBIRD €7.50
-
-<strong>BOCADILLOS</strong>
-* BACON Y QUESO €5.50
-* BACON, QUESO Y SALCHICHAS €6.00
-* LOMO CON QUESO Y PIMIENTOS €7.30
-* PECHUGA DE PAVO €7.80
-* FILETE DE TERNERA €7.80
-
-<strong>BURRITOS</strong>
-* POLLO €5.50
-* CARNE €6.00
-* BLUEBIRD €6.50
-
-<strong>SÁNDWICHES</strong>
-* MIXTO €3.50
-* PICANTE €4.50
-* VEGETAL €5.50
-* BONITO €6.00
-* BLUE BIRD €6.50
-
-<strong>PLATOS COMBINADOS</strong>
-* HUEVOS, CHORIZO, BACON, PATATAS €10.50
-* DOBLE HAMBURGUESA, HUEVO, BACON, PATATAS €11.50
-* PECHUGA DE PAVO, ENSALADA, HUEVO, PATATAS €12.00
-* POLLO EMPANIZADO, ENSALADA, PIMIENTOS, PATATAS €12.00
-* LOMO, HUEVO, PIMIENTOS, PATATAS €12.00
-* ESCOGE PROTEÍNA: POLLO, TERNERA O CERDO + GUARNICIÓN €12.50
-* ENTRE COT €13.50
-* PARRILLADA MIXTA: 1P €15.00 / 2P €25.00
-
-<strong>RACIONES</strong>
-* PATATAS FRITAS: P €4.50 / G €8.00
-* SALCHIPAPAS €10.00
-* NACHOS €10.00
-* DEDOS MOZZARELLA €7.00
-* TEQUEÑOS €7.00
-* ALITAS BBQ / PICANTES €7.00
-* JALAPEÑOS RELLENOS €5.00
-* RABAS €6.00
-
-<strong>ENSALADAS</strong>
-* NORMAL €5.80
-* MIXTA €6.80
-* BLUE BIRD €7.80
-
-<strong>MENÚ INFANTIL</strong>
-* QUESADILLAS JAMÓN Y QUESO €4.80
-* PATATAS FRITAS CON SALCHICHA €5.00
-* TENDERS DE POLLO €5.80
-
-<strong>POSTRES</strong>
-* POSTRE DEL DÍA €3.50
-* TARTA DE MAÍZ €3.50
-* MOUSSE DE ARÁNDANOS €3.00
-* POSTRE DE LA CASA €3.00
-* HELADO €3.00</pre>
+      <div class="section-title">EMPANADAS</div>
+      <div class="item"><span>JAMÓN Y QUESO</span><span class="price">€3.00</span><button onclick="addToCart('Jamón y Queso', 3.00)">+</button></div>
+      <div class="item"><span>POLLO Y QUESO</span><span class="price">€3.20</span><button onclick="addToCart('Pollo y Queso', 3.20)">+</button></div>
+      <div class="item"><span>CARNE Y QUESO</span><span class="price">€3.50</span><button onclick="addToCart('Carne y Queso', 3.50)">+</button></div>
+      <div class="item"><span>MIXTA</span><span class="price">€4.00</span><button onclick="addToCart('Mixta', 4.00)">+</button></div>
+      <div class="item"><span>PABELLÓN</span><span class="price">€6.00</span><button onclick="addToCart('Pabellón', 6.00)">+</button></div>
+      <div class="cart">
+        <h3>🛒 Carrito de Compras</h3>
+        <ul id="cart-list" class="cart-list"></ul>
+        <p><strong>Total:</strong> €<span id="cart-total">0.00</span></p>
+      </div>
       <a href="https://wa.me/34944375281" class="whatsapp" target="_blank">📲 Pedir por WhatsApp</a>
     </section>
   </main>
-
   <footer>
     <p>📍 Dirección: Calle Ejemplo 123, Tu Ciudad</p>
     <p>🕒 Horario: Lun-Dom 12:00 – 23:00</p>
@@ -232,5 +176,30 @@
     </div>
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class="top-btn">⬆ Volver arriba</button>
   </footer>
+  <script>
+    const cart = [];
+    function addToCart(item, price) {
+      const existing = cart.find(x => x.name === item);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name: item, price, qty: 1 });
+      }
+      renderCart();
+    }
+    function renderCart() {
+      const list = document.getElementById('cart-list');
+      const total = document.getElementById('cart-total');
+      list.innerHTML = '';
+      let sum = 0;
+      cart.forEach(({ name, price, qty }) => {
+        sum += price * qty;
+        const li = document.createElement('li');
+        li.textContent = `${qty} x ${name} (€${(price * qty).toFixed(2)})`;
+        list.appendChild(li);
+      });
+      total.textContent = sum.toFixed(2);
+    }
+  </script>
 </body>
 </html>
