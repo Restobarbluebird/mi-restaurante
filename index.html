@@ -433,108 +433,109 @@
     <button onclick="addItemWithOption('Parrillada Mixta', 'parrilladaCantidad', {'Una persona': 15.00, 'Dos personas': 25.00})">+</button>
   </div>
 </div>
-  
-        <div class="cart" id="cart">
-          <h3>🛒 Carrito de compras</h3>
-          <div class="cart-list" id="cart-list"></div>
-          <textarea class="cart-observations" id="observations" placeholder="Observaciones (sin cebolla, etc)"></textarea>
-          <input class="cart-input" id="name" placeholder="Nombre y Apellido" required />
-          <input class="cart-input" id="phone" placeholder="Teléfono" required />
-          <input class="cart-input" id="address" placeholder="Dirección" required />
-          <select class="cart-select" id="payment">
-            <option value="Efectivo">Efectivo</option>
-            <option value="Tarjeta">Tarjeta</option>
-            <option value="Bizum">Bizum</option>
-          </select>
-          <p style="color: #FFD700; font-weight: bold; margin-top: 10px;">🚚 Domicilio solo para Baracaldo por favor.</p>
-          <p style="margin-top: 10px; font-weight: bold; color: #FFD700;">Costo de domicilio: 3€</p>
-          <p id="total" style="margin-top: 5px; font-weight: bold; color: white;">Total: 0€</p>
-          <a href="#" class="whatsapp" id="whatsapp-link" onclick="sendOrder(event)">Realizar pedido por WhatsApp</a>
-          <p id="form-warning" style="color: red; display:none;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <p>&copy; 2025 Restobar Blue Bird</p>
-    </footer>
-  </div>
-  <script>
-    let cart = [];
 
-    function addItem(category, name, price) {
-      const existingItem = cart.find(item => item.name === name && item.category === category);
-      if (existingItem) {
-        existingItem.quantity++;
+<div class="cart" id="cart">
+  <h3>🛒 Carrito de compras</h3>
+  <div class="cart-list" id="cart-list"></div>
+  <textarea class="cart-observations" id="observations" placeholder="Observaciones (sin cebolla, etc)"></textarea>
+  <input class="cart-input" id="name" placeholder="Nombre y Apellido" required />
+  <input class="cart-input" id="phone" placeholder="Teléfono" required />
+  <input class="cart-input" id="address" placeholder="Dirección" required />
+  <select class="cart-select" id="payment">
+    <option value="Efectivo">Efectivo</option>
+    <option value="Tarjeta">Tarjeta</option>
+    <option value="Bizum">Bizum</option>
+  </select>
+  <p style="color: #FFD700; font-weight: bold; margin-top: 10px;">🚚 Domicilio solo para Baracaldo por favor.</p>
+  <p style="margin-top: 10px; font-weight: bold; color: #FFD700;">Costo de domicilio: 3€</p>
+  <p id="total" style="margin-top: 5px; font-weight: bold; color: white;">Total: 0€</p>
+  <a href="#" class="whatsapp" id="whatsapp-link" onclick="sendOrder(event)">Realizar pedido por WhatsApp</a>
+  <p id="form-warning" style="color: red; display:none;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
+</div>
+</section>
+</main>
+<footer>
+  <p>&copy; 2025 Restobar Blue Bird</p>
+</footer>
+
+<script>
+  let cart = [];
+
+  function addItem(category, name, price) {
+    const existingItem = cart.find(item => item.name === name && item.category === category);
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cart.push({ category, name, price, quantity: 1 });
+    }
+    updateCart();
+  }
+
+  function removeItem(category, name) {
+    const index = cart.findIndex(item => item.name === name && item.category === category);
+    if (index !== -1) {
+      if (cart[index].quantity > 1) {
+        cart[index].quantity--;
       } else {
-        cart.push({ category, name, price, quantity: 1 });
+        cart.splice(index, 1);
       }
-      updateCart();
     }
+    updateCart();
+  }
 
-    function removeItem(category, name) {
-      const index = cart.findIndex(item => item.name === name && item.category === category);
-      if (index !== -1) {
-        if (cart[index].quantity > 1) {
-          cart[index].quantity--;
-        } else {
-          cart.splice(index, 1);
-        }
-      updateCart();
-    }
-
-    function updateCart() {
-      const cartList = document.getElementById('cart-list');
-      const totalDisplay = document.getElementById('total');
-      const cartCount = document.getElementById('cart-count');
-      cartList.innerHTML = '';
-      let total = 0;
-      let count = 0;
-      cart.forEach(item => {
-        total += item.price * item.quantity;
-        count += item.quantity;
-        const div = document.createElement('div');
-        div.textContent = `${item.quantity} x ${item.name} (${item.category}) - ${(item.price * item.quantity).toFixed(2)}€`;
-        cartList.appendChild(div);
-      });
-      totalDisplay.textContent = `Total: ${total.toFixed(2)}€`;
+  function updateCart() {
+    const cartList = document.getElementById('cart-list');
+    const totalDisplay = document.getElementById('total');
+    const cartCount = document.getElementById('cart-count');
+    cartList.innerHTML = '';
+    let total = 0;
+    let count = 0;
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+      count += item.quantity;
+      const div = document.createElement('div');
+      div.textContent = `${item.quantity} x ${item.name} (${item.category}) - ${(item.price * item.quantity).toFixed(2)}€`;
+      cartList.appendChild(div);
+    });
+    totalDisplay.textContent = `Total: ${total.toFixed(2)}€`;
+    if (cartCount) {
       cartCount.textContent = count;
     }
+  }
 
-    function scrollToCart() {
-      document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
+  function scrollToCart() {
+    document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function sendOrder(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const payment = document.getElementById('payment').value;
+    const observations = document.getElementById('observations').value;
+
+    if (!name || !phone || !address) {
+      document.getElementById('form-warning').style.display = 'block';
+      return;
+    } else {
+      document.getElementById('form-warning').style.display = 'none';
     }
 
-    function sendOrder(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      const payment = document.getElementById('payment').value;
-      const observations = document.getElementById('observations').value;
-
-      if (!name || !phone || !address) {
-        document.getElementById('form-warning').style.display = 'block';
-        return;
-      } else {
-        document.getElementById('form-warning').style.display = 'none';
-      }
-
-      let message = `*Pedido para Restobar Blue Bird*\n\n`;
-      cart.forEach(item => {
-        message += `• ${item.quantity} x ${item.name} (${item.category}) - ${(item.price * item.quantity).toFixed(2)}€\n`;
-      });
-      message += `\n*Total:* ${parseFloat(document.getElementById('total').textContent.replace('Total: ', '')).toFixed(2)}€`;
-      message += `\n\n*Nombre:* ${name}\n*Teléfono:* ${phone}\n*Dirección:* ${address}\n*Forma de pago:* ${payment}`;
-      if (observations.trim()) {
-        message += `\n*Observaciones:* ${observations}`;
-      }
-
-      const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
-      window.open(whatsappURL, '_blank');
+    let message = `*Pedido para Restobar Blue Bird*\n\n`;
+    cart.forEach(item => {
+      message += `• ${item.quantity} x ${item.name} (${item.category}) - ${(item.price * item.quantity).toFixed(2)}€\n`;
+    });
+    message += `\n*Total:* ${parseFloat(document.getElementById('total').textContent.replace('Total: ', '')).toFixed(2)}€`;
+    message += `\n\n*Nombre:* ${name}\n*Teléfono:* ${phone}\n*Dirección:* ${address}\n*Forma de pago:* ${payment}`;
+    if (observations.trim()) {
+      message += `\n*Observaciones:* ${observations}`;
     }
-  </script>
-</body>
-  <script>
+
+    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+  }
+
   function addItemWithOption(name, selectId, priceMap) {
     const select = document.getElementById(selectId);
     const selectedOption = select.value;
@@ -564,4 +565,3 @@
 </script>
 </body>
 </html>
-
