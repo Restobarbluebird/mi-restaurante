@@ -539,21 +539,17 @@
   <script>
 
     function addBurgerWithOptions(name, price, tipoId, panId) {
-    const pan = document.getElementById(panId)?.value || '';
-    const tipo = tipoId ? (document.getElementById(tipoId)?.value || '') : '';
+  const tipo = tipoId ? (document.getElementById(tipoId)?.value || '') : '';
 
-    if (!pan) {
-      alert("Por favor selecciona el pan");
-      return;
-    }
+  if (tipoId && !tipo) {
+    alert("Por favor selecciona si es de carne o de pollo");
+    return;
+  }
 
-    if (tipoId && !tipo) {
-      alert("Por favor selecciona si es de carne o de pollo");
-      return;
-    }
+  const fullName = tipo ? `${name} (${tipo})` : name;
+  addItem("Hamburguesas", fullName, price);
+}
 
-    const fullName = tipo ? `${name} (${tipo}, Pan ${pan})` : `${name} (Pan ${pan})`;
-    addItem("Hamburguesas", fullName, price);
   }
 </script>
 </html>
