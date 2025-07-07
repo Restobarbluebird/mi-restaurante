@@ -1,11 +1,8 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Restobar Blue Bird</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <link rel="icon" href="logo.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -171,7 +168,7 @@
 <body>
   <div class="cart-floating" id="cart-count" onclick="scrollToCart()">0</div>
   <header>
-    <img src="Logo.png.png" alt="Logo Restobar Blue Bird" class="logo"/>
+    <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
     <h1>Restobar Blue Bird</h1>
   </header>
   <section class="slider">
@@ -182,99 +179,24 @@
   <main>
     <section id="menu">
       <h2>Menú</h2>
-      <div class="section-title">EMPANADAS</div>
-      <div class="item"><span>JAMÓN Y QUESO</span><span class="price">€3.00</span><button onclick="addToCart('Jamón y Queso', 3.00)">+</button><button onclick="removeFromCart('Jamón y Queso')">–</button></div>
-      <div class="item"><span>POLLO Y QUESO</span><span class="price">€3.20</span><button onclick="addToCart('Pollo y Queso', 3.20)">+</button><button onclick="removeFromCart('Pollo y Queso')">–</button></div>
-      <div class="item"><span>CARNE Y QUESO</span><span class="price">€3.50</span><button onclick="addToCart('Carne y Queso', 3.50)">+</button><button onclick="removeFromCart('Carne y Queso')">–</button></div>
-      <div class="item"><span>MIXTA</span><span class="price">€4.00</span><button onclick="addToCart('Mixta', 4.00)">+</button><button onclick="removeFromCart('Mixta')">–</button></div>
-      <div class="item"><span>PABELLÓN</span><span class="price">€6.00</span><button onclick="addToCart('Pabellón', 6.00)">+</button><button onclick="removeFromCart('Pabellón')">–</button></div>
-      <div class="cart" id="cart">
-        <h3>🛒 Carrito de Compras</h3>
-        <ul id="cart-list" class="cart-list"></ul>
-        <textarea id="observations" class="cart-observations" placeholder="Observaciones (sin cebolla, sin salsas, etc)"></textarea>
-        <input type="text" id="name" class="cart-input" placeholder="Nombre y Apellido" required />
-        <input type="tel" id="phone" class="cart-input" placeholder="Teléfono" required />
-        <input type="text" id="address" class="cart-input" placeholder="Dirección de entrega" required />
-        <select id="payment" class="cart-select">
-          <option value="Efectivo">Efectivo</option>
-          <option value="Tarjeta">Tarjeta</option>
-          <option value="Bizum">Bizum</option>
-        </select>
-        <p><strong>Total:</strong> €<span id="cart-total">0.00</span> (incluye €3.00 por domicilio)</p>
-      </div>
-      <a href="#" id="whatsapp-link" class="whatsapp" target="_blank">📲 Pedir por WhatsApp</a>
+      <p style="color: #FFD700; font-weight: bold;">🚚 Domicilio solo para Baracaldo por favor.</p>
+      <!-- Aquí irán los productos y carrito -->
+      <p id="form-warning" style="color: red; display:none;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
     </section>
   </main>
   <footer>
-    <p>📍 Dirección: Calle Ejemplo 123, Tu Ciudad</p>
-    <p>🕒 Horario: Lun-Dom 12:00 – 23:00</p>
-    <div class="socials">
-      <a href="#" target="_blank">📸 Instagram</a>
-      <a href="#" target="_blank">📘 Facebook</a>
-    </div>
-    <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class="top-btn">⬆ Volver arriba</button>
+    <p>&copy; 2025 Restobar Blue Bird</p>
   </footer>
   <script>
-    const cart = [];
-    function addToCart(item, price) {
-      const existing = cart.find(x => x.name === item);
-      if (existing) {
-        existing.qty++;
-      } else {
-        cart.push({ name: item, price, qty: 1 });
+    document.getElementById('whatsapp-link')?.addEventListener('click', function(e) {
+      const name = document.getElementById('name')?.value.trim();
+      const phone = document.getElementById('phone')?.value.trim();
+      const address = document.getElementById('address')?.value.trim();
+      if (!name || !phone || !address) {
+        e.preventDefault();
+        document.getElementById('form-warning').style.display = 'block';
       }
-      renderCart();
-    }
-    function removeFromCart(item) {
-      const index = cart.findIndex(x => x.name === item);
-      if (index !== -1) {
-        cart[index].qty--;
-        if (cart[index].qty <= 0) cart.splice(index, 1);
-      }
-      renderCart();
-    }
-    function scrollToCart() {
-      document.getElementById("cart").scrollIntoView({ behavior: 'smooth' });
-    }
-    function renderCart() {
-      const list = document.getElementById('cart-list');
-      const total = document.getElementById('cart-total');
-      const observations = document.getElementById('observations').value;
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      const payment = document.getElementById('payment').value;
-      const whatsappLink = document.getElementById('whatsapp-link');
-      const cartCount = document.getElementById('cart-count');
-
-      list.innerHTML = '';
-      let sum = 3.00; // Costo fijo de envío
-      let totalItems = 0;
-      let message = 'Hola! Quiero hacer un pedido:%0A';
-
-      cart.forEach(({ name, price, qty }) => {
-        sum += price * qty;
-        totalItems += qty;
-        message += `${qty} x ${name} (€${(price * qty).toFixed(2)})%0A`;
-        const li = document.createElement('li');
-        li.textContent = `${qty} x ${name} (€${(price * qty).toFixed(2)})`;
-        list.appendChild(li);
-      });
-
-      if (observations) message += `%0A📝 Observaciones: ${observations}`;
-      if (name) message += `%0A👤 Nombre: ${name}`;
-      if (phone) message += `%0A📞 Teléfono: ${phone}`;
-      if (address) message += `%0A📍 Dirección: ${address}`;
-      if (payment) message += `%0A💳 Modo de pago: ${payment}`;
-
-      message += `%0A🚚 Envío: €3.00`;
-      message += `%0A💰 Total: €${sum.toFixed(2)}`;
-
-      whatsappLink.href = `https://wa.me/34944375281?text=${message}`;
-
-      total.textContent = sum.toFixed(2);
-      cartCount.textContent = totalItems;
-    }
+    });
   </script>
 </body>
 </html>
