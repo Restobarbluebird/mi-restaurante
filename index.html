@@ -6,13 +6,100 @@
   <title>Restobar Blue Bird</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Mantén tus estilos personalizados aquí o agrégalos según necesidad */
+    body {
+      font-family: 'Rubik', sans-serif;
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      margin: 0;
+    }
+    .logo {
+      max-width: 120px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #FFD700;
+    }
+    h2, h3.section-title {
+      color: #FFD700;
+      border-bottom: 1px solid #FFD700;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .item span.price {
+      margin-left: 10px;
+      font-weight: bold;
+      color: #0f0;
+    }
+    button {
+      margin: 0 5px;
+      background-color: #FFD700;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+    .cart {
+      margin-top: 40px;
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .cart-input, .cart-select, .cart-observations {
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+    .whatsapp {
+      display: block;
+      text-align: center;
+      background-color: #25D366;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #888;
+    }
+    .cart-floating {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #FFD700;
+      color: black;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
   <div class="cart-floating" id="cart-count" onclick="scrollToCart()">0</div>
   <header>
-    <img src="Logo.png.png" alt="Logo Restobar Blue Bird" class="logo"/>
+    <img src="logo.png" alt="Logo Restobar Blue Bird" class="logo"/>
     <h1>Restobar Blue Bird</h1>
   </header>
   <main>
@@ -25,15 +112,14 @@
       <div class="item"><span>Pollo y Queso</span><button onclick="addItem('Empanadas', 'Pollo y Queso', 3.20)">+</button><button onclick="removeItem('Empanadas', 'Pollo y Queso')">−</button><span class="price">3.20€</span></div>
       <div class="item"><span>Carne y Queso</span><button onclick="addItem('Empanadas', 'Carne y Queso', 3.50)">+</button><button onclick="removeItem('Empanadas', 'Carne y Queso')">−</button><span class="price">3.50€</span></div>
       <div class="item"><span>Mixta</span><button onclick="addItem('Empanadas', 'Mixta', 4.00)">+</button><button onclick="removeItem('Empanadas', 'Mixta')">−</button><span class="price">4.00€</span></div>
-      <div class="item"><span>Pabellón</span><button onclick="addItem('Empanadas', 'Pabellón', 6.00)">+</button><button onclick="removeItem('Empanadas', 'Pabellón')">−</button><span class="price">6.00€</span></div>
+      <div class="item"><span>Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><button onclick="addItem('Empanadas', 'Pabellón', 6.00)">+</button><button onclick="removeItem('Empanadas', 'Pabellón')">−</button><span class="price">6.00€</span></div>
 
-       <!-- AREPAS -->
+      <!-- AREPAS -->
       <h3 class="section-title">Arepas</h3>
       <div class="item"><span>Jamón y Queso</span><button onclick="addItem('Arepas', 'Jamón y Queso', 6.00)">+</button><button onclick="removeItem('Arepas', 'Jamón y Queso')">−</button><span class="price">6.00€</span></div>
       <div class="item"><span>Pollo y Queso</span><button onclick="addItem('Arepas', 'Pollo y Queso', 7.00)">+</button><button onclick="removeItem('Arepas', 'Pollo y Queso')">−</button><span class="price">7.00€</span></div>
       <div class="item"><span>Carne y Queso</span><button onclick="addItem('Arepas', 'Carne y Queso', 8.00)">+</button><button onclick="removeItem('Arepas', 'Carne y Queso')">−</button><span class="price">8.00€</span></div>
       <div class="item"><span>Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><button onclick="addItem('Arepas', 'Pabellón', 9.50)">+</button><button onclick="removeItem('Arepas', 'Pabellón')">−</button><span class="price">9.50€</span></div>
-
 
       <div class="cart" id="cart">
         <h3>🛒 Carrito de compras</h3>
