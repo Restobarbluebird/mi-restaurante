@@ -134,6 +134,85 @@
         <div class="item"><span class="name">Carne y Queso</span><div class="item-controls"><span class="price">8.00€</span><button onclick="addItem('Arepas', 'Carne y Queso', 8.00)">+</button><button onclick="removeItem('Arepas', 'Carne y Queso')">−</button></div></div>
         <div class="item"><span class="name">Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><span class="price">9.50€</span><button onclick="addItem('Arepas', 'Pabellón', 9.50)">+</button><button onclick="removeItem('Arepas', 'Pabellón')">−</button></div></div>
 
+        <!-- CACHAPAS -->
+        <h3 class="section-title">Cachapas</h3>
+        <div class="item"><span class="name">Queso de Mano</span><div class="item-controls"><span class="price">8.00€</span><button onclick="addItem('Cachapas', 'Queso de Mano', 8.00)">+</button><button onclick="removeItem('Cachapas', 'Queso de Mano')">−</button></div></div>
+        <div class="item"><span class="name">Queso de Mano y Jamón</span><div class="item-controls"><span class="price">9.00€</span><button onclick="addItem('Cachapas', 'Queso de Mano y Jamón', 9.00)">+</button><button onclick="removeItem('Cachapas', 'Queso de Mano y Jamón')">−</button></div></div>
+        <div class="item"><span class="name">Queso de Mano y Carne Mechada</span><div class="item-controls"><span class="price">9.50€</span><button onclick="addItem('Cachapas', 'Queso de Mano y Carne Mechada', 9.50)">+</button><button onclick="removeItem('Cachapas', 'Queso de Mano y Carne Mechada')">−</button></div></div>
+        <div class="item"><span class="name">Pabellón (Queso, carne desmechada, alubias negras y plátano frito)</span><div class="item-controls"><span class="price">10.50€</span><button onclick="addItem('Cachapas', 'Pabellón', 10.50)">+</button><button onclick="removeItem('Cachapas', 'Pabellón')">−</button></div></div>
+
+         <!-- HAMBURGUESAS -->
+        <h3 class="section-title">Hamburguesas</h3>
+        <p class="note">Todas van acompañadas de patatas fritas</p>
+
+        <div class="item">
+          <label class="name">Selecciona tu pan (excepto Tequeburguer):</label>
+          <select id="pan" required>
+            <option value="">-- Elige una opción --</option>
+            <option value="Normal">Normal</option>
+            <option value="Brioche">Brioche</option>
+          </select>
+        </div>
+
+        <div class="item">
+          <span class="name">Clásica (Lechuga, tomate, cebolla, mayonesa y kétchup)</span>
+          <div class="item-controls">
+            <select id="tipoClasica" required>
+              <option value="">-- Carne o Pollo --</option>
+              <option value="Carne">Carne</option>
+              <option value="Pollo">Pollo</option>
+            </select>
+            <span class="price">7.00€</span>
+            <button onclick="addBurger('Clásica', 7.00)">+</button>
+            <button onclick="removeItem('Hamburguesas', 'Clásica')">−</button>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="name">Crispy (Pollo empanizado, lechuga, tomate, queso, jamón, patatas paja, mayonesa, kétchup y salsa de la casa)</span>
+          <div class="item-controls">
+            <span class="price">8.50€</span>
+            <button onclick="addBurger('Crispy', 8.50)">+</button>
+            <button onclick="removeItem('Hamburguesas', 'Crispy')">−</button>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="name">BBQ (Carne, lechuga, tomate, queso, jamón, chorizo, bacón, cebolla crujiente, mayonesa, kétchup, salsa de la casa y salsa BBQ)</span>
+          <div class="item-controls">
+            <span class="price">10.00€</span>
+            <button onclick="addBurger('BBQ', 10.00)">+</button>
+            <button onclick="removeItem('Hamburguesas', 'BBQ')">−</button>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="name">Doble (Dos hamburguesas, lechuga, tomate, cebolla, pepinillos, huevo, doble queso, bacon, patatas paja y salsa de la casa)</span>
+          <div class="item-controls">
+            <span class="price">12.00€</span>
+            <button onclick="addBurger('Doble', 12.00)">+</button>
+            <button onclick="removeItem('Hamburguesas', 'Doble')">−</button>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="name">Blue Bird (Carne, lomo de cerdo, lechuga, tomate, pepinillo, cebolla caramelizada, huevo, bacon, jamón, queso, patatas paja y salsa de la casa)</span>
+          <div class="item-controls">
+            <span class="price">12.50€</span>
+            <button onclick="addBurger('Blue Bird', 12.50)">+</button>
+            <button onclick="removeItem('Hamburguesas', 'Blue Bird')">−</button>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="name">Tequeburguer (Tapas de tequeño, doble carne, doble queso, jamón york, bacon y cebolla caramelizada)</span>
+          <div class="item-controls">
+            <span class="price">15.00€</span>
+            <button onclick="addBurger('Tequeburguer', 15.00)">+</button>
+            <button onclick="removeItem('Hamburguesas', 'Tequeburguer')">−</button>
+          </div>
+        </div>
+        
         <div class="cart" id="cart">
           <h3>🛒 Carrito de compras</h3>
           <div class="cart-list" id="cart-list"></div>
