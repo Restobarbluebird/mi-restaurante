@@ -48,14 +48,24 @@
       flex: 1;
     }
     .item-controls {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .item-controls span.price {
-      color: #FFD700;
-      font-weight: bold;
-      margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.custom-select {
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
     }
     button {
       background-color: #FFD700;
