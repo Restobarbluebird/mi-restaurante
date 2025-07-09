@@ -545,19 +545,18 @@
 </div>
 
 <div class="item">
-  <div>
-    <span class="name">Proteína personalizada</span><br>
-    <small>Escoge la proteína, Acompañado de huevo frito, pimientos, ensalada y patatas.</small>
-  </div>
+  <span class="name">Proteína personalizada<br>
+    <small>Escoge la proteína: huevo frito, pimientos, ensalada y patatas</small>
+  </span>
   <div class="item-controls">
-    <select class="custom-select" id="proteinaCombo" required>
-      <option value="">proteína</option>
+    <select class="custom-select" id="proteinaSeleccion" required>
+      <option value="">Selecciona proteína</option>
       <option value="Pollo">Pollo</option>
       <option value="Ternera">Ternera</option>
       <option value="Cerdo">Cerdo</option>
     </select>
-    <button onclick="removeItemWithOption('Proteína personalizada', 'proteinaCombo')">−</button>
-    <button onclick="addItemWithOption('Proteína personalizada', 'proteinaCombo', {'Pollo': 12.50, 'Ternera': 12.50, 'Cerdo': 12.50})">+</button>
+    <button onclick="removeItemWithOption('Platos Combinados', 'Proteína personalizada', 'proteinaSeleccion')">−</button>
+    <button onclick="addItemWithOption('Platos Combinados', 'Proteína personalizada', 'proteinaSeleccion', {'Pollo': 12.50, 'Ternera': 12.50, 'Cerdo': 12.50})">+</button>
   </div>
 </div>
 
