@@ -943,7 +943,8 @@
 
 
 <div class="cart" id="cart">
-  <h3>🛒 Carrito de compras</h3>
+ <!-- CENTRADO DEL TÍTULO -->
+<h3 style="text-align: center;">🛒 Carrito de compras</h3>
   <div class="cart-list" id="cart-list"></div>
   <textarea class="cart-observations" id="observations" placeholder="Observaciones (sin cebolla, etc)"></textarea>
   <input class="cart-input" id="name" placeholder="Nombre y Apellido" required />
@@ -956,7 +957,7 @@
   </select>
   
   <!-- CENTRADOS Y ACTUALIZADOS -->
-  <p style="color: #FFD700; font-weight: bold; margin-top: 10px; text-align: center;">🚚 Domicilio solo para Baracaldo.</p>
+  <p style="color: #FFD700; font-weight: bold; margin-top: 10px; text-align: center;">🚚 Domicilios solo para Baracaldo.</p>
   <p style="margin-top: 10px; font-weight: bold; color: #FFD700; text-align: center;">Costo de domicilio: 2.50€</p>
   <p id="total" style="margin-top: 5px; font-weight: bold; color: white; text-align: center;">Total: 0€</p>
 
@@ -1061,7 +1062,7 @@
       message += `\n*Observaciones:* ${observations}`;
     }
 
-    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+   const whatsappURL = `https://wa.me/34944375281?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');
   }
 
