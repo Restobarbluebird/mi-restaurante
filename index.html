@@ -544,12 +544,23 @@
   </div>
 </div>
 
-<div class="item"><span class="name">Escoge la proteína: (Pollo, Ternera o Cerdo), huevo frito, pimientos, ensalada y patatas</span>
-  <div class="item-controls"><span class="price">12.50€</span>
-    <button onclick="removeItem('Platos Combinados', 'Proteína personalizada')">−</button>
-    <button onclick="addItem('Platos Combinados', 'Proteína personalizada', 12.50)">+</button>
+<div class="item">
+  <div>
+    <span class="name">Proteína personalizada</span><br>
+    <small>Escoge la proteína, Acompañado de huevo frito, pimientos, ensalada y patatas.</small>
+  </div>
+  <div class="item-controls">
+    <select class="custom-select" id="proteinaCombo" required>
+      <option value="">Elige proteína</option>
+      <option value="Pollo">Pollo</option>
+      <option value="Ternera">Ternera</option>
+      <option value="Cerdo">Cerdo</option>
+    </select>
+    <button onclick="removeItemWithOption('Proteína personalizada', 'proteinaCombo')">−</button>
+    <button onclick="addItemWithOption('Proteína personalizada', 'proteinaCombo', {'Pollo': 12.50, 'Ternera': 12.50, 'Cerdo': 12.50})">+</button>
   </div>
 </div>
+
 
 <div class="item">
   <div>
