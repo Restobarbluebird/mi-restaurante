@@ -954,11 +954,18 @@
     <option value="Tarjeta">Tarjeta</option>
     <option value="Bizum">Bizum</option>
   </select>
-  <p style="color: #FFD700; font-weight: bold; margin-top: 10px;">🚚 Domicilio solo para Baracaldo.</p>
-  <p style="margin-top: 10px; font-weight: bold; color: #FFD700;">Costo de domicilio: 2.50€</p>
-  <p id="total" style="margin-top: 5px; font-weight: bold; color: white;">Total: 0€</p>
-  <a href="#" class="whatsapp" id="whatsapp-link" onclick="sendOrder(event)">Realizar pedido por WhatsApp</a>
-  <p id="form-warning" style="color: red; display:none;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
+  
+  <!-- CENTRADOS Y ACTUALIZADOS -->
+  <p style="color: #FFD700; font-weight: bold; margin-top: 10px; text-align: center;">🚚 Domicilio solo para Baracaldo.</p>
+  <p style="margin-top: 10px; font-weight: bold; color: #FFD700; text-align: center;">Costo de domicilio: 2.50€</p>
+  <p id="total" style="margin-top: 5px; font-weight: bold; color: white; text-align: center;">Total: 0€</p>
+
+  <!-- BOTÓN CENTRADO -->
+  <div style="text-align: center; margin-top: 15px;">
+    <a href="#" class="whatsapp" id="whatsapp-link" onclick="sendOrder(event)" style="display: inline-block; background-color: #25D366; color: white; font-weight: bold; padding: 12px 20px; border-radius: 6px; text-decoration: none;">Realizar pedido por WhatsApp</a>
+  </div>
+
+  <p id="form-warning" style="color: red; display:none; text-align: center;">Por favor, completa todos los campos obligatorios para hacer el pedido.</p>
 </div>
 </section>
 </main>
@@ -1005,7 +1012,11 @@
       div.textContent = `${item.quantity} x ${item.name} (${item.category}) - ${(item.price * item.quantity).toFixed(2)}€`;
       cartList.appendChild(div);
     });
-    totalDisplay.textContent = `Total: ${total.toFixed(2)}€`;
+
+    const deliveryCost = 2.50;
+    const grandTotal = total + deliveryCost;
+    totalDisplay.textContent = `Total: ${grandTotal.toFixed(2)}€`;
+
     if (cartCount) {
       cartCount.textContent = count;
     }
@@ -1031,11 +1042,21 @@
     }
 
     let message = `*Pedido para Restobar Blue Bird*\n\n`;
+    let totalCart = 0;
+
     cart.forEach(item => {
-      message += `• ${item.quantity} x ${item.name} (${item.category}) - ${(item.price * item.quantity).toFixed(2)}€\n`;
+      const subtotal = item.price * item.quantity;
+      totalCart += subtotal;
+      message += `• ${item.quantity} x ${item.name} (${item.category}) - ${subtotal.toFixed(2)}€\n`;
     });
-    message += `\n*Total:* ${parseFloat(document.getElementById('total').textContent.replace('Total: ', '')).toFixed(2)}€`;
+
+    const deliveryCost = 2.50;
+    const finalTotal = totalCart + deliveryCost;
+
+    message += `\n*Costo de domicilio:* ${deliveryCost.toFixed(2)}€`;
+    message += `\n*Total:* ${finalTotal.toFixed(2)}€`;
     message += `\n\n*Nombre:* ${name}\n*Teléfono:* ${phone}\n*Dirección:* ${address}\n*Forma de pago:* ${payment}`;
+
     if (observations.trim()) {
       message += `\n*Observaciones:* ${observations}`;
     }
@@ -1045,51 +1066,49 @@
   }
 
   function addItemWithOption(...args) {
-  let category, name, selectId, priceMap;
+    let category, name, selectId, priceMap;
 
-  // Soporte para la versión antigua de 3 parámetros
-  if (args.length === 3) {
-    category = "Parrilladas";
-    [name, selectId, priceMap] = args;
-  } else {
-    [category, name, selectId, priceMap] = args;
+    if (args.length === 3) {
+      category = "Parrilladas";
+      [name, selectId, priceMap] = args;
+    } else {
+      [category, name, selectId, priceMap] = args;
+    }
+
+    const select = document.getElementById(selectId);
+    const selectedOption = select.value;
+
+    if (!selectedOption) {
+      alert("Por favor selecciona una opción");
+      return;
+    }
+
+    const price = priceMap[selectedOption];
+    const fullName = `${name} (${selectedOption})`;
+    addItem(category, fullName, price);
   }
 
-  const select = document.getElementById(selectId);
-  const selectedOption = select.value;
+  function removeItemWithOption(...args) {
+    let category, name, selectId;
 
-  if (!selectedOption) {
-    alert("Por favor selecciona una opción");
-    return;
+    if (args.length === 2) {
+      category = "Parrilladas";
+      [name, selectId] = args;
+    } else {
+      [category, name, selectId] = args;
+    }
+
+    const select = document.getElementById(selectId);
+    const selectedOption = select.value;
+
+    if (!selectedOption) {
+      alert("Por favor selecciona una opción");
+      return;
+    }
+
+    const fullName = `${name} (${selectedOption})`;
+    removeItem(category, fullName);
   }
-
-  const price = priceMap[selectedOption];
-  const fullName = `${name} (${selectedOption})`;
-  addItem(category, fullName, price);
-}
-
-function removeItemWithOption(...args) {
-  let category, name, selectId;
-
-  if (args.length === 2) {
-    category = "Parrilladas";
-    [name, selectId] = args;
-  } else {
-    [category, name, selectId] = args;
-  }
-
-  const select = document.getElementById(selectId);
-  const selectedOption = select.value;
-
-  if (!selectedOption) {
-    alert("Por favor selecciona una opción");
-    return;
-  }
-
-  const fullName = `${name} (${selectedOption})`;
-  removeItem(category, fullName);
-}
-
 </script>
 </body>
 </html>
