@@ -1045,7 +1045,17 @@
     window.open(whatsappURL, '_blank');
   }
 
-  function addItemWithOption(category, name, selectId, priceMap) {
+  function addItemWithOption(...args) {
+  let category, name, selectId, priceMap;
+
+  // Soporte para la versión antigua de 3 parámetros
+  if (args.length === 3) {
+    category = "Parrilladas";
+    [name, selectId, priceMap] = args;
+  } else {
+    [category, name, selectId, priceMap] = args;
+  }
+
   const select = document.getElementById(selectId);
   const selectedOption = select.value;
 
@@ -1059,7 +1069,16 @@
   addItem(category, fullName, price);
 }
 
-function removeItemWithOption(category, name, selectId) {
+function removeItemWithOption(...args) {
+  let category, name, selectId;
+
+  if (args.length === 2) {
+    category = "Parrilladas";
+    [name, selectId] = args;
+  } else {
+    [category, name, selectId] = args;
+  }
+
   const select = document.getElementById(selectId);
   const selectedOption = select.value;
 
