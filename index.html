@@ -1045,32 +1045,33 @@
     window.open(whatsappURL, '_blank');
   }
 
-  function addItemWithOption(name, selectId, priceMap) {
-    const select = document.getElementById(selectId);
-    const selectedOption = select.value;
+  function addItemWithOption(category, name, selectId, priceMap) {
+  const select = document.getElementById(selectId);
+  const selectedOption = select.value;
 
-    if (!selectedOption) {
-      alert("Por favor selecciona un tamaño");
-      return;
-    }
-
-    const price = priceMap[selectedOption];
-    const fullName = `${name} (${selectedOption})`;
-    addItem("Parrilladas", fullName, price);
+  if (!selectedOption) {
+    alert("Por favor selecciona una opción");
+    return;
   }
 
-  function removeItemWithOption(name, selectId) {
-    const select = document.getElementById(selectId);
-    const selectedOption = select.value;
+  const price = priceMap[selectedOption];
+  const fullName = `${name} (${selectedOption})`;
+  addItem(category, fullName, price);
+}
 
-    if (!selectedOption) {
-      alert("Por favor selecciona un tamaño");
-      return;
-    }
+function removeItemWithOption(category, name, selectId) {
+  const select = document.getElementById(selectId);
+  const selectedOption = select.value;
 
-    const fullName = `${name} (${selectedOption})`;
-    removeItem("Parrilladas", fullName);
+  if (!selectedOption) {
+    alert("Por favor selecciona una opción");
+    return;
   }
+
+  const fullName = `${name} (${selectedOption})`;
+  removeItem(category, fullName);
+}
+
 </script>
 </body>
 </html>
