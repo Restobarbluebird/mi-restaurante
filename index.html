@@ -279,15 +279,15 @@
 <p class="note">Todas van acompañadas de patatas fritas</p>
 
 <div class="item">
-  <div class="item-info">
-    <span class="name">Hamburguesa Clásica</span>
-    <span class="description">(Carne o pollo, lechuga, tomate, cebolla, mayonesa y kétchup)</span>
+  <div>
+    <span class="name">Hamburguesa Clásica</span><br>
+    <small>Carne o pollo, lechuga, tomate, cebolla, mayonesa y kétchup</small>
   </div>
   <div class="item-controls">
     <span class="price">9.50€</span>
     <select id="carneClasica" class="custom-select">
-      <option value="Carne">Pollo</option>
-      <option value="Pollo">Mixta</option>
+      <option value="Pollo">Pollo</option>
+      <option value="Mixta">Mixta</option>
     </select>
     <button onclick="removeItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value)">−</button>
     <button onclick="addItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value, 9.50)">+</button>
@@ -295,9 +295,9 @@
 </div>
 
 <div class="item">
-  <div class="item-info">
-    <span class="name">Crispy</span>
-    <span class="description">(Pollo empanizado, lechuga, tomate, queso, jamón, patatas paja, mayonesa, kétchup y salsa de la casa)</span>
+  <div>
+    <span class="name">Crispy</span><br>
+    <small>Pollo empanizado, lechuga, tomate, queso, jamón, patatas paja, mayonesa, kétchup y salsa de la casa</small>
   </div>
   <div class="item-controls">
     <span class="price">8.50€</span>
@@ -307,9 +307,9 @@
 </div>
 
 <div class="item">
-  <div class="item-info">
-    <span class="name">BBQ</span>
-    <span class="description">(Carne, lechuga, tomate, queso, jamón, chorizo, bacón, cebolla crujiente, mayonesa, kétchup, salsa de la casa y salsa BBQ)</span>
+  <div>
+    <span class="name">BBQ</span><br>
+    <small>Carne, lechuga, tomate, queso, jamón, chorizo, bacón, cebolla crujiente, mayonesa, kétchup, salsa de la casa y salsa BBQ</small>
   </div>
   <div class="item-controls">
     <span class="price">10.00€</span>
@@ -319,9 +319,9 @@
 </div>
 
 <div class="item">
-  <div class="item-info">
-    <span class="name">Doble</span>
-    <span class="description">(Dos hamburguesas, lechuga, tomate, cebolla, pepinillos, huevo, doble queso, bacon, patatas paja y salsa de la casa)</span>
+  <div>
+    <span class="name">Doble</span><br>
+    <small>Dos hamburguesas, lechuga, tomate, cebolla, pepinillos, huevo, doble queso, bacon, patatas paja y salsa de la casa</small>
   </div>
   <div class="item-controls">
     <span class="price">12.00€</span>
@@ -331,9 +331,9 @@
 </div>
 
 <div class="item">
-  <div class="item-info">
-    <span class="name">Blue Bird</span>
-    <span class="description">(Carne, lomo de cerdo, lechuga, tomate, pepinillo, cebolla caramelizada, huevo, bacon, jamón, queso, patatas paja y salsa de la casa)</span>
+  <div>
+    <span class="name">Blue Bird</span><br>
+    <small>Carne, lomo de cerdo, lechuga, tomate, pepinillo, cebolla caramelizada, huevo, bacon, jamón, queso, patatas paja y salsa de la casa</small>
   </div>
   <div class="item-controls">
     <span class="price">12.50€</span>
@@ -343,9 +343,9 @@
 </div>
 
 <div class="item">
-  <div class="item-info">
-    <span class="name">Tequeburguer</span>
-    <span class="description">(Tapas de tequeño, doble carne, doble queso, jamón york, bacon y cebolla caramelizada)</span>
+  <div>
+    <span class="name">Tequeburguer</span><br>
+    <small>Tapas de tequeño, doble carne, doble queso, jamón york, bacon y cebolla caramelizada</small>
   </div>
   <div class="item-controls">
     <span class="price">15.00€</span>
@@ -353,6 +353,7 @@
     <button onclick="addItem('Hamburguesas', 'Tequeburguer', 15.00)">+</button>
   </div>
 </div>
+
 
         <!-- PERROS CALIENTES -->
 <h3 class="section-title">Perros Calientes</h3>
