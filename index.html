@@ -276,7 +276,7 @@
 
 <!-- HAMBURGUESAS -->
 <h3 class="section-title">Hamburguesas</h3>
-<p class="note">Todas van acompañadas de patatas fritas</p>
+<p>Todas van acompañadas de patatas fritas</p>
 
 <div class="item">
   <div>
@@ -285,12 +285,12 @@
   </div>
   <div class="item-controls">
     <span class="price">9.50€</span>
-    <select id="carneClasica" class="custom-select">
-      <option value="Pollo">Pollo</option>
-      <option value="Mixta">Mixta</option>
+    <select class="custom-select">
+      <option value="pollo">Pollo</option>
+      <option value="carne">Carne</option>
     </select>
-    <button onclick="removeItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value)">−</button>
-    <button onclick="addItem('Hamburguesas', 'Hamburguesa Clásica - ' + document.getElementById('carneClasica').value, 9.50)">+</button>
+    <button onclick="removeItem('Hamburguesas', 'Hamburguesa Clásica')">−</button>
+    <button onclick="addItem('Hamburguesas', 'Hamburguesa Clásica', 9.50)">+</button>
   </div>
 </div>
 
@@ -321,7 +321,7 @@
 <div class="item">
   <div>
     <span class="name">Doble</span><br>
-    <small>Dos hamburguesas, lechuga, tomate, cebolla, pepinillos, huevo, doble queso, bacon, patatas paja y salsa de la casa</small>
+    <small>Dos hamburguesas, lechuga, tomate, cebolla, pepinillos, huevo, doble queso, bacón, patatas paja y salsa de la casa</small>
   </div>
   <div class="item-controls">
     <span class="price">12.00€</span>
@@ -333,24 +333,24 @@
 <div class="item">
   <div>
     <span class="name">Blue Bird</span><br>
-    <small>Carne, lomo de cerdo, lechuga, tomate, pepinillo, cebolla caramelizada, huevo, bacon, jamón, queso, patatas paja y salsa de la casa</small>
+    <small>Carne, lomo de cerdo, lechuga, tomate, pepinillo, cebolla caramelizada, huevo, bacón, jamón, queso, patatas paja y salsa de la casa</small>
   </div>
   <div class="item-controls">
-    <span class="price">12.50€</span>
+    <span class="price">13.00€</span>
     <button onclick="removeItem('Hamburguesas', 'Blue Bird')">−</button>
-    <button onclick="addItem('Hamburguesas', 'Blue Bird', 12.50)">+</button>
+    <button onclick="addItem('Hamburguesas', 'Blue Bird', 13.00)">+</button>
   </div>
 </div>
 
 <div class="item">
   <div>
     <span class="name">Tequeburguer</span><br>
-    <small>Tapas de tequeño, doble carne, doble queso, jamón york, bacon y cebolla caramelizada</small>
+    <small>Carne, lechuga, tomate, queso, jamón, tequeños, patatas paja y salsa de la casa</small>
   </div>
   <div class="item-controls">
-    <span class="price">15.00€</span>
+    <span class="price">12.00€</span>
     <button onclick="removeItem('Hamburguesas', 'Tequeburguer')">−</button>
-    <button onclick="addItem('Hamburguesas', 'Tequeburguer', 15.00)">+</button>
+    <button onclick="addItem('Hamburguesas', 'Tequeburguer', 12.00)">+</button>
   </div>
 </div>
 
